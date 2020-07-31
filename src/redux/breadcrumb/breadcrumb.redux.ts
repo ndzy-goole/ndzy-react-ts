@@ -1,41 +1,45 @@
 import { createActions, handleActions } from 'redux-actions';
 
 export interface BreadcrumbStore {
-  path?: string;
-  name: string;
+  breadcrumbs: { path?: string; name: string }[];
 }
 
-const initialStore: BreadcrumbStore[] = [
-  {
-    name: ''
-  }
-];
+const initialStore: BreadcrumbStore = {
+  breadcrumbs: []
+};
 
 export const {
   changebreadcrumb,
   resetbreadcrumb,
   clearbreadcrumb
 } = createActions({
-  CHANGEBREADCRUMB: (breadcrums: BreadcrumbStore[]) => {
+  CHANGEBREADCRUMB: (breadcrums: { path?: string; name: string }[]) => {
     return breadcrums;
   },
-  RESETBREADCRUMB: (breadcrums: BreadcrumbStore[]) => {
+  RESETBREADCRUMB: (breadcrums: { path?: string; name: string }[]) => {
     return breadcrums;
   },
   CLEARBREADCRUMB: () => {
     return [];
   }
 });
+
 const breadcrumbReducer = handleActions(
   {
-    CHANGEBREADCRUMB: (state: BreadcrumbStore[], action) => {
-      return [...state, ...action.payload];
+    CHANGEBREADCRUMB: (state: BreadcrumbStore, action: any) => {
+      return Object.assign({}, state, {
+        breadcrumbs: [...state.breadcrumbs, ...action.payload]
+      });
     },
-    RESETBREADCRUMB: (state: BreadcrumbStore[], action) => {
-      return [...action.payload];
+    RESETBREADCRUMB: (state: BreadcrumbStore, action) => {
+      return Object.assign({}, state, {
+        breadcrumbs: action.payload
+      });
     },
-    CLEARBREADCRUMB: (state: BreadcrumbStore[], action) => {
-      return [...action.payload];
+    CLEARBREADCRUMB: (state: BreadcrumbStore, action) => {
+      return Object.assign({}, state, {
+        breadcrumbs: action.payload
+      });
     }
   },
   initialStore

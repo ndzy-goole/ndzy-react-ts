@@ -25,7 +25,9 @@ const collapsedReducer = handleActions(
       });
     },
     CLEARCOLLAPSED: (state: CollapsedStore, action) => {
-      return action.payload;
+      return Object.assign({}, state, {
+        collapsed: action.payload
+      });
     }
   },
   initialStore

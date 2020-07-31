@@ -25,7 +25,9 @@ const selectKeysReducer = handleActions(
       });
     },
     CLEARSELECTKEYS: (state: SelectKeysStore, action) => {
-      return action.payload;
+      return Object.assign({}, state, {
+        selectKeys: action.payload
+      });
     }
   },
   initialStore

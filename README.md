@@ -32,3 +32,11 @@ yarn add ahooks
 # redux
 
 yarn add redux react-redux redux-promise redux-logger redux-actions @types/react-redux @types/redux-promise @types/redux-logger @types/redux-actions
+
+# perfect-scrollbar
+
+yarn add perfect-scrollbar @types/perfect-scrollbar
+
+# underscore
+
+yarn add underscore @types/underscore

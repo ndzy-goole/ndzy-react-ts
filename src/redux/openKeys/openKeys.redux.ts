@@ -25,7 +25,9 @@ const openKeysReducer = handleActions(
       });
     },
     CLEAROPENKEYS: (state: OpenKeysStore, action) => {
-      return action.payload;
+      return Object.assign({}, state, {
+        openkeys: action.payload
+      });
     }
   },
   initialStore
