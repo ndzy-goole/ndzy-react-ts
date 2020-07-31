@@ -28,3 +28,7 @@ yarn add axios
 # ahooks
 
 yarn add ahooks
+
+# redux
+
+yarn add redux react-redux redux-promise redux-logger redux-actions @types/react-redux @types/redux-promise @types/redux-logger @types/redux-actions
