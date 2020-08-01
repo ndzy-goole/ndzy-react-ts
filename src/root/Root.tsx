@@ -1,188 +1,188 @@
-// import React, { Component } from 'react';
-// import { Router, Route, Switch, Redirect } from 'react-router-dom';
-// import { connect, DispatchProp } from 'react-redux';
-// import { isArray } from 'underscore';
+import React from 'react';
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import { connect, DispatchProp } from 'react-redux';
+import { isArray, compose } from 'underscore';
 
-// import Frame from './Frame';
+import Frame from './Frame';
 
-// import hasAuth from '../utils/hasAuth';
-// import { historyBrowser, historyHash } from './history';
-// import { MyStore } from '../reducers';
-// import {
-//   menuRouter,
-//   fullScreenRouter,
-//   errRouter
-// } from './router';
-// import {
-//   setAuthInfo,
-//   resetBreadcrumb,
-//   changeBreadcrumb,
-//   setSelectedKeys,
-//   setOpenKeys,
-//   clearStore
-// } from '../actions/sysActions';
-// import { remove } from '../utils/storage';
-// import { HISTORY_KEY } from '../constant/sysConstant';
+import hasAuth from '../utils/hasAuth';
+import { historyBrowser, historyHash } from './history';
+import { MyStore } from '../redux';
+import { menuRouter, fullScreenRouter, errRouter } from './router';
+import { setauthinfo } from '../redux/authInfo/authInfo.redux';
+import {
+  resetbreadcrumb,
+  changebreadcrumb
+} from '../redux/breadcrumb/breadcrumb.redux';
+import { setselectkeys } from '../redux/selectKeys/selectKeys.redux';
+import { setopenkeys } from '../redux/openKeys/openKeys.redux';
 
-// const history = {
-//   browser: historyBrowser,
-//   hash: historyHash
-// };
+import utils from '../utils';
+import { HISTORY_KEY } from '../constant/sysConstant';
 
-// export interface RootProps extends DispatchProp {
-//   logo: (collapsed: boolean) => JSX.Element,
-//   headerHeight: number,
-//   headerComponent: JSX.Element | null,
-//   navType: 'tab' | 'breadcrumb',
-//   maxTabNum: number,
-//   historyType: 'browser' | 'hash',
-//   authInfo: any[],
-//   collapsed: boolean,
-//   breadcrumb: any[]
-// }
+const history = {
+  browser: historyBrowser,
+  hash: historyHash
+};
 
-// class Root extends Component<RootProps>{
-//   render() {
-//     return (
-//       <Router history={history[this.props.historyType]}>
-//         <Switch>
-//           {/* 导航菜单下的子模块 */}
-//           {
-//             menuRouter.map(item => {
-//               if (!hasAuth(item.auth, this.props.authInfo)) {
-//                 return null;
-//               }
+export interface RootProps extends DispatchProp {
+  logo: (collapsed: boolean) => JSX.Element;
+  headerHeight: number;
+  headerComponent: JSX.Element | null;
+  navType: 'tab' | 'breadcrumb';
+  maxTabNum: number;
+  historyType: 'browser' | 'hash';
+  authInfo: any[];
+  collapsed: boolean;
+  breadcrumb: any[];
+}
 
-//               return (
-//                 <Route
-//                   exact
-//                   key={item.path}
-//                   path={item.path}
-//                   render={
-//                     routeProps => {
-//                       const C = item.component; //页面
+const mapStateToProps = (store: MyStore) => {
+  const { authInfo, collapsed, breadcrumb } = store;
 
-//                       return (
-//                         <Frame {...this.props} {...routeProps}>
-//                           <C
-//                             {...routeProps}
-//                             clearStore={this.clearStore.bind(this)}
-//                             setBreadcrumb={this.setBreadcrumb.bind(this)}
-//                             setAuthInfo={this.setAuthInfo.bind(this)} />
-//                         </Frame>
-//                       );
-//                     }
-//                   } />
-//               );
-//             })
-//           }
-
-//           {/* 全局模块 */}
-//           {
-//             fullScreenRouter.map(item => {
-//               return (
-//                 <Route
-//                   exact
-//                   key={item.path}
-//                   path={item.path}
-//                   render={
-//                     routeProps => {
-//                       const C = item.component;
-
-//                       return (
-//                         <C
-//                           {...routeProps}
-//                           clearStore={this.clearStore.bind(this)}
-//                           setBreadcrumb={this.setBreadcrumb.bind(this)}
-//                           setAuthInfo={this.setAuthInfo.bind(this)} />
-//                       );
-//                     }
-//                   } />
-//               );
-//             })
-//           }
-
-//           <Redirect
-//             exact
-//             path="/"
-//             to={{ pathname: '/login' }}
-//           />
-
-//           <Route
-//             render={
-//               routeProps => {
-//                 let Error = errRouter[0].component;
-
-//                 return (
-//                   <Error
-//                     {...routeProps}
-//                     clearStore={this.clearStore.bind(this)}
-//                     setBreadcrumb={this.setBreadcrumb.bind(this)}
-//                     setAuthInfo={this.setAuthInfo.bind(this)} />
-//                 );
-//               }
-//             } />
-//         </Switch>
-//       </Router>
-//     );
-//   }
-
-//   clearStore() {
-//     remove(HISTORY_KEY); //清除缓存的store数据
-//     this.props.dispatch(clearStore());
-//   }
-
-//   // 设置权限信息
-//   setAuthInfo(authInfo: any[]) {
-//     this.props.dispatch(setAuthInfo(authInfo));
-//   }
-
-//   setBreadcrumb(data: { path?: string, name: string }[] | string) {
-//     if (isArray(data)) {
-//       this.props.dispatch(resetBreadcrumb(data));
-//       return;
-//     }
-
-//     const pathInfo = this.props.breadcrumb.find(item => {
-//       return item.path === data;
-//     });
-
-//     // tab形式的面包屑需要同步设置selectKeys
-//     let openKey = '';
-
-//     menuRouter.forEach(item => {
-//       if (data.split('?')[0] === item.path) {
-//         if (!pathInfo) {
-//           this.props.dispatch(changeBreadcrumb({ path: data, name: item.title }));
-//         }
-
-//         this.props.dispatch(setSelectedKeys([data]));
-//       } else if (data.includes(item.parent)) {
-//         openKey = item.parent;
-//       }
-//     });
-
-//     if (!this.props.collapsed) {
-//       this.props.dispatch(setOpenKeys([openKey]));
-//     }
-//   }
-// }
-
-// const mapStateToProps = (store: MyStore) => {
-//   const { authInfo, collapsed, breadcrumb } = store;
-
-//   return {
-//     authInfo,
-//     collapsed,
-//     breadcrumb
-//   };
-// };
+  return {
+    authInfo,
+    collapsed,
+    breadcrumb
+  };
+};
 
 // export default connect(mapStateToProps)(Root);
 
-// ######
-import React from 'react';
+export default connect(
+  mapStateToProps,
+  {}
+)((props: RootProps) => {
+  const clearStore = () => {
+    utils.remove(HISTORY_KEY); //清除缓存的store数据
+    // props.dispatch(clearStore());
+  };
 
-export default () => {
-  return <div>ok</div>;
-};
+  // 设置权限信息
+  const setAuthInfo = (authInfo: any[]) => {
+    props.dispatch(setauthinfo(authInfo));
+  };
+
+  const setBreadcrumb = (data: { path?: string; name: string }[] | string) => {
+    if (isArray(data)) {
+      props.dispatch(resetbreadcrumb(data));
+      return;
+    }
+
+    const pathInfo = props.breadcrumb.find((item) => {
+      return item.path === data;
+    });
+
+    // tab形式的面包屑需要同步设置selectKeys
+    let openKey = '';
+
+    menuRouter.forEach((item) => {
+      if (data.split('?')[0] === item.path) {
+        if (!pathInfo) {
+          props.dispatch(changebreadcrumb({ path: data, name: item.title }));
+        }
+
+        props.dispatch(setselectkeys([data]));
+      } else if (data.includes(item.parent)) {
+        openKey = item.parent;
+      }
+    });
+
+    if (!props.collapsed) {
+      props.dispatch(setopenkeys([openKey]));
+    }
+  };
+  return (
+    <Router history={history[props.historyType]}>
+      <Switch>
+        {/* 导航菜单下的子模块 */}
+        {menuRouter.map((item) => {
+          // TODO: 路由权限
+          // if (!hasAuth(item.auth, props.authInfo)) {
+          //   return null;
+          // }
+
+          return (
+            <Route
+              exact
+              key={item.path}
+              path={item.path}
+              render={(routeProps) => {
+                const C = item.component; //页面
+
+                return (
+                  <Frame {...props} {...routeProps}>
+                    <C
+                      {...routeProps}
+                      clearStore={() => {
+                        clearStore();
+                      }}
+                      setBreadcrumb={(data: any) => {
+                        setBreadcrumb(data);
+                      }}
+                      setAuthInfo={(authInfo: any) => {
+                        setAuthInfo(authInfo);
+                      }}
+                    />
+                  </Frame>
+                );
+              }}
+            />
+          );
+        })}
+
+        {/* 全局模块 */}
+        {fullScreenRouter.map((item) => {
+          return (
+            <Route
+              exact
+              key={item.path}
+              path={item.path}
+              render={(routeProps) => {
+                const C = item.component;
+
+                return (
+                  <C
+                    {...routeProps}
+                    clearStore={() => {
+                      clearStore();
+                    }}
+                    setBreadcrumb={(data: any) => {
+                      setBreadcrumb(data);
+                    }}
+                    setAuthInfo={(authInfo: any) => {
+                      setAuthInfo(authInfo);
+                    }}
+                  />
+                );
+              }}
+            />
+          );
+        })}
+
+        <Redirect exact path="/" to={{ pathname: '/login' }} />
+
+        <Route
+          render={(routeProps) => {
+            let Error = errRouter[0].component;
+
+            return (
+              <Error
+                {...routeProps}
+                clearStore={() => {
+                  clearStore();
+                }}
+                setBreadcrumb={(data: any) => {
+                  setBreadcrumb(data);
+                }}
+                setAuthInfo={(authInfo: any) => {
+                  setAuthInfo(authInfo);
+                }}
+              />
+            );
+          }}
+        />
+      </Switch>
+    </Router>
+  );
+});

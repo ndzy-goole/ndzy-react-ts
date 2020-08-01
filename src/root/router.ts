@@ -59,54 +59,6 @@ const appConfig = {
       auth: '',
       title: '模块D',
       icon: 'icon-gongdan'
-    },
-    {
-      key: '/module1',
-      auth: '',
-      title: '模块D',
-      icon: 'icon-gongdan'
-    },
-    {
-      key: '/module2',
-      auth: '',
-      title: '模块D',
-      icon: 'icon-gongdan'
-    },
-    {
-      key: '/module3',
-      auth: '',
-      title: '模块D',
-      icon: 'icon-gongdan'
-    },
-    {
-      key: '/module4',
-      auth: '',
-      title: '模块D',
-      icon: 'icon-gongdan'
-    },
-    {
-      key: '/module5',
-      auth: '',
-      title: '模块D',
-      icon: 'icon-gongdan'
-    },
-    {
-      key: '/module6',
-      auth: '',
-      title: '模块D',
-      icon: 'icon-gongdan'
-    },
-    {
-      key: '/module7',
-      auth: '',
-      title: '模块D',
-      icon: 'icon-gongdan'
-    },
-    {
-      key: '/module8',
-      auth: '',
-      title: '模块D',
-      icon: 'icon-gongdan'
     }
   ],
   fullScreen: [

@@ -1,13 +1,6 @@
 import { createActions, handleActions } from 'redux-actions';
 
-export interface OpenKeysStore {
-  openkeys: string[];
-}
-
-const initialStore: OpenKeysStore = {
-  openkeys: []
-};
-
+const openKeys: string[] = [];
 export const { setopenkeys, clearopenkeys } = createActions({
   SETOPENKEYS: (openKeys: string[]) => {
     return openKeys;
@@ -19,18 +12,14 @@ export const { setopenkeys, clearopenkeys } = createActions({
 
 const openKeysReducer = handleActions(
   {
-    SETOPENKEYS: (state: OpenKeysStore, action) => {
-      return Object.assign({}, state, {
-        openkeys: action.payload
-      });
+    SETOPENKEYS: (state: string[], action) => {
+      return Object.assign(state, action.payload);
     },
-    CLEAROPENKEYS: (state: OpenKeysStore, action) => {
-      return Object.assign({}, state, {
-        openkeys: action.payload
-      });
+    CLEAROPENKEYS: (state: string[], action) => {
+      return Object.assign(state, action.payload);
     }
   },
-  initialStore
+  openKeys
 );
 
 export default openKeysReducer;

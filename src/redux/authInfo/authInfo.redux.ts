@@ -4,9 +4,11 @@ export interface AuthInfoStore {
   authInfo: { [propsName: string]: any }[];
 }
 
-const initialStore: AuthInfoStore = {
-  authInfo: []
-};
+// const initialStore: AuthInfoStore = {
+//   authInfo: []
+// };
+
+const authInfo: { [propsName: string]: any }[] = [];
 
 export const { setauthinfo, clearauthinfo } = createActions({
   SETAUTHINFO: (authInfo: { [propsName: string]: any }[]) => {
@@ -18,18 +20,14 @@ export const { setauthinfo, clearauthinfo } = createActions({
 });
 const authInfoReducer = handleActions(
   {
-    SETAUTHINFO: (state: AuthInfoStore, action) => {
-      return Object.assign({}, state, {
-        authInfo: action.payload
-      });
+    SETAUTHINFO: (state: { [propsName: string]: any }[], action) => {
+      return Object.assign(state, action.payload);
     },
-    CLEARAUTHINFO: (state: AuthInfoStore, action) => {
-      return Object.assign({}, state, {
-        authInfo: action.payload
-      });
+    CLEARAUTHINFO: (state: { [propsName: string]: any }[], action) => {
+      return Object.assign(state, action.payload);
     }
   },
-  initialStore
+  authInfo
 );
 
 export default authInfoReducer;

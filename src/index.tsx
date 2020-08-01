@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { Provider } from 'react-redux';
+import store from './redux';
 // 国际化
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
@@ -13,7 +15,9 @@ moment.locale('zh-cn');
 ReactDOM.render(
   <React.StrictMode>
     <ConfigProvider locale={zhCN}>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </ConfigProvider>
   </React.StrictMode>,
   document.getElementById('root')

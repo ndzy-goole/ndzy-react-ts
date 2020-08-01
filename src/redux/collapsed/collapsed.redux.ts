@@ -1,13 +1,6 @@
 import { createActions, handleActions } from 'redux-actions';
 
-export interface CollapsedStore {
-  collapsed: boolean;
-}
-
-const initialStore: CollapsedStore = {
-  collapsed: false
-};
-
+const collapsed: boolean = false;
 export const { changecollapsed, clearcollapsed } = createActions({
   CHANGECOLLAPSED: (collapsed: boolean) => {
     return collapsed;
@@ -19,18 +12,14 @@ export const { changecollapsed, clearcollapsed } = createActions({
 
 const collapsedReducer = handleActions(
   {
-    CHANGECOLLAPSED: (state: CollapsedStore, action) => {
-      return Object.assign({}, state, {
-        collapsed: action.payload
-      });
+    CHANGECOLLAPSED: (state: boolean, action) => {
+      return action.payload;
     },
-    CLEARCOLLAPSED: (state: CollapsedStore, action) => {
-      return Object.assign({}, state, {
-        collapsed: action.payload
-      });
+    CLEARCOLLAPSED: (state: boolean, action) => {
+      return action.payload;
     }
   },
-  initialStore
+  collapsed
 );
 
 export default collapsedReducer;
