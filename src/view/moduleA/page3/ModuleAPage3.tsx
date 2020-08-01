@@ -4,7 +4,7 @@ import './ModuleAPage3.scss';
 
 interface Props extends RouteChildrenProps {
   setBreadcrumb: (data: { path?: string, name: string }[] | string) => void,
-  setAuthInfo: ([]) => void,
+  setAuthInfo: (authInfo: any) => void,
   clearStore: () => void
 }
 interface State {

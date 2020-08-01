@@ -1,12 +1,43 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles.scss';
 
-export default class Header extends Component {
-  render() {
-    return (
-      <div className="custom-header">
-        <h2>自定义header区域</h2>
-      </div>
-    );
-  }
-}
+import moment from 'moment';
+import { Typography } from 'antd';
+const { Paragraph } = Typography;
+
+const Clock = () => {
+  const [date, setDate] = useState(new Date());
+  const [dateValue, setDateValue] = useState('');
+  const [dateValue1, setDateValue1] = useState('');
+
+  useEffect(() => {
+    function tick() {
+      setDate(new Date());
+    }
+    const timerID = setInterval(tick, 1000);
+
+    return function clearTick() {
+      clearInterval(timerID);
+    };
+  });
+
+  useEffect(() => {
+    setDateValue(moment(date).format('yyyy-MM-dd hh:mm:ss'));
+    setDateValue1(moment(date).format('YYYY-MM-DD-HH-mm-ss'));
+  }, [date]);
+
+  return (
+    <div className="custom-click">
+      <Paragraph copyable>{dateValue}</Paragraph>
+      <Paragraph copyable>{dateValue1}</Paragraph>
+    </div>
+  );
+};
+
+export default () => {
+  return (
+    <div className="custom-header">
+      <Clock></Clock>
+    </div>
+  );
+};

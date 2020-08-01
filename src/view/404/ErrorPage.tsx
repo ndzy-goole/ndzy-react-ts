@@ -5,24 +5,24 @@ import './ErrorPage.scss';
 
 interface Props extends RouteChildrenProps {
   setBreadcrumb: (data: { path?: string; name: string }[] | string) => void;
-  setAuthInfo: ([]) => void;
+  setAuthInfo: (authInfo: any) => void;
   clearStore: () => void;
 }
 
 export default (props: Props) => {
   // 设置面包屑参数
   const setBreadcrumb = () => {
+    console.log('设置面包屑');
     // breadcrumb形式设置格式
     // let arr = [
     //   { name: '面包屑名称1' },
     //   { path: '/a/a', name: '面包屑名称2' }
     // ];
-    // this.props.setBreadcrumb(arr);
+    // props.setBreadcrumb(arr);
     // tab形式设置格式
-    // this.props.setBreadcrumb('/moduleA/page3?a=1&b=2');
+    // props.setBreadcrumb('/moduleA/page3?a=1&b=2');
   };
   useMount(() => {
-    console.log(props);
     setBreadcrumb();
   });
   return (
