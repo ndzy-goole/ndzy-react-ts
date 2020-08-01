@@ -29,9 +29,14 @@ interface Props extends RootProps, RouteChildrenProps {
 
 export default connect((state) => state, { changecollapsed, setopenkeys })(
   (props: Props) => {
+    console.log(props);
     const { collapsed, headerHeight } = props;
     const sidebarWidth = collapsed ? 56 : 220; //侧边栏收缩和展开的宽度
     const [menuScroll, setMenuScroll] = useState<any>();
+    /**
+     * @description 获取 openKeys
+     * @param path
+     */
     const getOpenKeys = (path: string) => {
       let openKey = '';
 
@@ -102,19 +107,23 @@ export default connect((state) => state, { changecollapsed, setopenkeys })(
           style={{ width: `calc(100% - ${sidebarWidth}px)` }}
         >
           <div className="layout-header" style={{ height: headerHeight }}>
-            {collapsed ? (
-              <MenuUnfoldOutlined
-                onClick={() => {
-                  handleCollapsedBtn();
-                }}
-              />
-            ) : (
-              <MenuFoldOutlined
-                onClick={() => {
-                  handleCollapsedBtn();
-                }}
-              />
-            )}
+            <div>
+              <span className="collapsed-btn">
+                {collapsed ? (
+                  <MenuUnfoldOutlined
+                    onClick={() => {
+                      handleCollapsedBtn();
+                    }}
+                  />
+                ) : (
+                  <MenuFoldOutlined
+                    onClick={() => {
+                      handleCollapsedBtn();
+                    }}
+                  />
+                )}
+              </span>
+            </div>
 
             {props.headerComponent}
           </div>

@@ -1,6 +1,6 @@
-$border-color:#ddd;
-$collapsed-color:#999;
-$collapsed-color-hover:#3399FF;
+$border-color: #ddd;
+$collapsed-color: #999;
+$collapsed-color-hover: #3399ff;
 
 .layout-frame {
   width: 100%;
@@ -15,12 +15,16 @@ $collapsed-color-hover:#3399FF;
     left: 0;
     top: 0;
     transition: 0.3s;
-    background: linear-gradient(180deg, rgba(26, 117, 175, 1) 0%, rgba(36, 182, 198, 1) 100%);
+    background: linear-gradient(
+      180deg,
+      rgba(26, 117, 175, 1) 0%,
+      rgba(36, 182, 198, 1) 100%
+    );
 
     .layout-logo {
       position: relative;
 
-      >* {
+      > * {
         position: absolute;
         left: 50%;
         top: 50%;
@@ -46,7 +50,7 @@ $collapsed-color-hover:#3399FF;
 
           &.ant-menu-item-selected {
             border-radius: 100px 0px 0px 100px;
-            color: #0088D2;
+            color: #0088d2;
             font-weight: 500;
             background: rgba(238, 240, 243, 1);
 
@@ -60,9 +64,7 @@ $collapsed-color-hover:#3399FF;
           color: #fff;
 
           &:hover {
-
             .ant-menu-submenu-arrow {
-
               &:before,
               &:after {
                 background-image: none;
@@ -77,7 +79,6 @@ $collapsed-color-hover:#3399FF;
         }
 
         .ant-menu-submenu-arrow {
-
           &:before,
           &:after {
             background-image: none;
@@ -94,7 +95,7 @@ $collapsed-color-hover:#3399FF;
             border-radius: 100px 0px 0px 100px;
             margin-left: 14px;
             padding-left: 34px !important;
-            color: #0088D2;
+            color: #0088d2;
             font-weight: 500;
 
             &:after {
@@ -114,8 +115,8 @@ $collapsed-color-hover:#3399FF;
         }
       }
 
-      .ant-menu-inline-collapsed>.ant-menu-submenu>.ant-menu-submenu-title,
-      .ant-menu-inline-collapsed>.ant-menu-item {
+      .ant-menu-inline-collapsed > .ant-menu-submenu > .ant-menu-submenu-title,
+      .ant-menu-inline-collapsed > .ant-menu-item {
         padding: 0 20px !important;
 
         white-space: nowrap;
@@ -124,14 +125,14 @@ $collapsed-color-hover:#3399FF;
           margin-right: 0;
         }
 
-        .menu-iconfont+span {
+        .menu-iconfont + span {
           display: inline-block;
           max-width: 0;
           opacity: 0;
         }
       }
 
-      .ant-menu-inline-collapsed>.ant-menu-item-selected {
+      .ant-menu-inline-collapsed > .ant-menu-item-selected {
         background-color: transparent !important;
         color: #fff !important;
       }
@@ -150,7 +151,8 @@ $collapsed-color-hover:#3399FF;
       overflow: hidden;
       position: relative;
       background-color: #fff;
-      border-bottom: 1px solid #E7EAED;
+      border-bottom: 1px solid #e7eaed;
+      padding: 16px;
 
       .collapsed-btn {
         font-size: 20px;
@@ -190,10 +192,10 @@ $collapsed-color-hover:#3399FF;
   background-color: #fff;
   overflow: auto;
 
-  >i {
+  > i {
     position: absolute;
     top: 15px;
-    color: #969EA5;
+    color: #969ea5;
     cursor: pointer;
   }
 
@@ -206,7 +208,7 @@ $collapsed-color-hover:#3399FF;
   }
 
   .notActive {
-    color: #DCDFE1;
+    color: #dcdfe1;
   }
 
   .custom-tabs-wrap {
@@ -235,7 +237,7 @@ $collapsed-color-hover:#3399FF;
     .line {
       width: 1px;
       height: 12px;
-      background-color: #B4BCC4;
+      background-color: #b4bcc4;
       position: absolute;
       left: 0;
       top: 50%;
@@ -244,7 +246,7 @@ $collapsed-color-hover:#3399FF;
 
     .text {
       line-height: 36px;
-      color: #787F85;
+      color: #787f85;
     }
 
     .close-icon {
@@ -253,7 +255,7 @@ $collapsed-color-hover:#3399FF;
       top: 50%;
       transform: translateY(-50%);
       font-size: 12px;
-      color: #787F85;
+      color: #787f85;
 
       &:hover {
         font-weight: bold;
@@ -269,7 +271,11 @@ $collapsed-color-hover:#3399FF;
 }
 
 .ant-menu-submenu-popup {
-  background: linear-gradient(180deg, rgba(26, 117, 175, 1) 0%, rgba(36, 182, 198, 1) 100%) !important;
+  background: linear-gradient(
+    180deg,
+    rgba(26, 117, 175, 1) 0%,
+    rgba(36, 182, 198, 1) 100%
+  ) !important;
 
   .ant-menu {
     background-color: transparent !important;
@@ -281,7 +287,7 @@ $collapsed-color-hover:#3399FF;
 
   .ant-menu-item-selected {
     background-color: #fff !important;
-    color: #0088D2;
+    color: #0088d2;
     font-weight: 500;
   }
 
@@ -303,7 +309,7 @@ $collapsed-color-hover:#3399FF;
     cursor: pointer;
 
     &:hover {
-      color: #2D99FF;
+      color: #2d99ff;
     }
   }
 }

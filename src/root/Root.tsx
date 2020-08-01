@@ -1,10 +1,7 @@
 import React from 'react';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {
-  isArray
-  // compose
-} from 'underscore';
+import { isArray } from 'underscore';
 
 import Frame from './Frame';
 
@@ -48,15 +45,12 @@ export interface RootProps {
 
 const mapStateToProps = (store: MyStore) => {
   const { authInfo, collapsed, breadcrumb } = store;
-
   return {
     authInfo,
     collapsed,
     breadcrumb
   };
 };
-
-// export default connect(mapStateToProps)(Root);
 
 export default connect(mapStateToProps, {
   resetbreadcrumb,
@@ -67,14 +61,21 @@ export default connect(mapStateToProps, {
 })((props: RootProps) => {
   const clearStore = () => {
     utils.remove(HISTORY_KEY); //清除缓存的store数据
+    // TODO: 重置 store
     // props.dispatch(clearStore());
   };
 
-  // 设置权限信息
+  /**
+   * @description 设置权限信息
+   * @param authInfo
+   */
   const setAuthInfo = (authInfo: any[]) => {
     props.setauthinfo && props.setauthinfo(authInfo);
   };
-
+  /**
+   * @description 设置面包屑
+   * @param data
+   */
   const setBreadcrumb = (data: { path?: string; name: string }[] | string) => {
     if (isArray(data)) {
       props.resetbreadcrumb && props.resetbreadcrumb(data);

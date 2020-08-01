@@ -1,5 +1,5 @@
 /**
- * @desc 封装了localStorage和sessionStorage的使用, 可直接保存, 获取对象.
+ * @description 封装了localStorage和sessionStorage的使用, 可直接保存, 获取对象.
  */
 export function setSession(name: string, value: any): void {
   if (typeof sessionStorage === 'object') {

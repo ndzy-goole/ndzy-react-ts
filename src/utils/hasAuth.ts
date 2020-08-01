@@ -1,3 +1,8 @@
+/**
+ * @description 判断用户权限
+ * @param auth
+ * @param authInfo
+ */
 export default function hasAuth(auth: string, authInfo: any[]): boolean {
   let bool = false;
 

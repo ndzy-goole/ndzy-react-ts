@@ -12,7 +12,6 @@ interface Props extends RouteChildrenProps {
 export default (props: Props) => {
   // 设置面包屑参数
   const setBreadcrumb = () => {
-    console.log('设置面包屑');
     // breadcrumb形式设置格式
     // let arr = [
     //   { name: '面包屑名称1' },
