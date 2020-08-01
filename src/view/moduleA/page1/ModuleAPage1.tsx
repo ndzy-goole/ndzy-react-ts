@@ -15,8 +15,6 @@ interface State {
 export default class ModuleAPage1 extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    console.log(props);
-
     this.state = {};
   }
 

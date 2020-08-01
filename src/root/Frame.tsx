@@ -29,7 +29,6 @@ interface Props extends RootProps, RouteChildrenProps {
 
 export default connect((state) => state, { changecollapsed, setopenkeys })(
   (props: Props) => {
-    console.log(props);
     const { collapsed, headerHeight } = props;
     const sidebarWidth = collapsed ? 56 : 220; //侧边栏收缩和展开的宽度
     const [menuScroll, setMenuScroll] = useState<any>();

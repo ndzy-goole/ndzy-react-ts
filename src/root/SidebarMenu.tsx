@@ -89,6 +89,7 @@ export default connect(mapStateToProps, {
             key={item.key}
             title={
               <span>
+                {/* TODO: 图标 */}
                 {/* {item.icon && item.icon.includes('icon-') ? (
                   <i className={`menu-iconfont iconfont ${item.icon}`} />
                 ) : item.icon ? (
@@ -105,6 +106,8 @@ export default connect(mapStateToProps, {
 
       return (
         <Menu.Item key={item.key}>
+          {/* TODO: 图标 */}
+
           {/* {item.icon && item.icon.includes('icon-') ? (
             <i className={`menu-iconfont iconfont ${item.icon}`} />
           ) : item.icon ? (

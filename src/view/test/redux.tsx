@@ -38,7 +38,6 @@ const Test = connect((state) => state, {
   clearselectkeys
 })((props: any) => {
   useEffect(() => {
-    console.log(props);
     // props.setauthinfo([{ username: 'zhang yi' }]);
     // props.clearauthinfo();
     // #####

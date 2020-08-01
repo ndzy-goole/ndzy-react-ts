@@ -24,7 +24,6 @@ const breadcrumbReducer = handleActions(
       state: { path?: string; name: string }[],
       action: any
     ) => {
-      console.log(action.payload);
       return [...state, action.payload];
     },
     RESETBREADCRUMB: (state: { path?: string; name: string }[], action) => {
