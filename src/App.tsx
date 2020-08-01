@@ -24,6 +24,7 @@ function App() {
       />
     );
   };
+
   return (
     <Root
       historyType="hash"
@@ -33,7 +34,7 @@ function App() {
       logo={(collapsed: boolean) => renderLogo(collapsed)}
       headerComponent={<Header />}
       headerHeight={56}
-      dispatch={(): any => {}}
+      // dispatch={(): any => {}}
     />
   );
 }

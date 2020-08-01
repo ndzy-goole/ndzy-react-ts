@@ -1,11 +1,13 @@
 import React from 'react';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
-import { connect, DispatchProp } from 'react-redux';
-import { isArray, compose } from 'underscore';
+import { connect } from 'react-redux';
+import {
+  isArray
+  // compose
+} from 'underscore';
 
 import Frame from './Frame';
 
-import hasAuth from '../utils/hasAuth';
 import { historyBrowser, historyHash } from './history';
 import { MyStore } from '../redux';
 import { menuRouter, fullScreenRouter, errRouter } from './router';
@@ -19,13 +21,15 @@ import { setopenkeys } from '../redux/openKeys/openKeys.redux';
 
 import utils from '../utils';
 import { HISTORY_KEY } from '../constant/sysConstant';
+import { ActionFunctionAny } from 'redux-actions';
+import { Action } from 'redux';
 
 const history = {
   browser: historyBrowser,
   hash: historyHash
 };
 
-export interface RootProps extends DispatchProp {
+export interface RootProps {
   logo: (collapsed: boolean) => JSX.Element;
   headerHeight: number;
   headerComponent: JSX.Element | null;
@@ -35,6 +39,11 @@ export interface RootProps extends DispatchProp {
   authInfo: any[];
   collapsed: boolean;
   breadcrumb: any[];
+  resetbreadcrumb?: ActionFunctionAny<Action<any>>;
+  changebreadcrumb?: ActionFunctionAny<Action<any>>;
+  setselectkeys?: ActionFunctionAny<Action<any>>;
+  setopenkeys?: ActionFunctionAny<Action<any>>;
+  setauthinfo?: ActionFunctionAny<Action<any>>;
 }
 
 const mapStateToProps = (store: MyStore) => {
@@ -49,10 +58,13 @@ const mapStateToProps = (store: MyStore) => {
 
 // export default connect(mapStateToProps)(Root);
 
-export default connect(
-  mapStateToProps,
-  {}
-)((props: RootProps) => {
+export default connect(mapStateToProps, {
+  resetbreadcrumb,
+  setauthinfo,
+  changebreadcrumb,
+  setselectkeys,
+  setopenkeys
+})((props: RootProps) => {
   const clearStore = () => {
     utils.remove(HISTORY_KEY); //清除缓存的store数据
     // props.dispatch(clearStore());
@@ -60,12 +72,12 @@ export default connect(
 
   // 设置权限信息
   const setAuthInfo = (authInfo: any[]) => {
-    props.dispatch(setauthinfo(authInfo));
+    props.setauthinfo && props.setauthinfo(authInfo);
   };
 
   const setBreadcrumb = (data: { path?: string; name: string }[] | string) => {
     if (isArray(data)) {
-      props.dispatch(resetbreadcrumb(data));
+      props.resetbreadcrumb && props.resetbreadcrumb(data);
       return;
     }
 
@@ -79,17 +91,17 @@ export default connect(
     menuRouter.forEach((item) => {
       if (data.split('?')[0] === item.path) {
         if (!pathInfo) {
-          props.dispatch(changebreadcrumb({ path: data, name: item.title }));
+          props.changebreadcrumb &&
+            props.changebreadcrumb({ path: data, name: item.title });
         }
-
-        props.dispatch(setselectkeys([data]));
+        props.setselectkeys && props.setselectkeys([data]);
       } else if (data.includes(item.parent)) {
         openKey = item.parent;
       }
     });
 
     if (!props.collapsed) {
-      props.dispatch(setopenkeys([openKey]));
+      props.setopenkeys && props.setopenkeys([openKey]);
     }
   };
   return (

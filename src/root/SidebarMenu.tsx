@@ -4,26 +4,27 @@ import {
   // Icon
 } from 'antd';
 import { RouteChildrenProps } from 'react-router-dom';
-import { connect, DispatchProp } from 'react-redux';
+import { connect } from 'react-redux';
 import { setopenkeys } from '../redux/openKeys/openKeys.redux';
 import { setselectkeys } from '../redux/selectKeys/selectKeys.redux';
 import { changebreadcrumb } from '../redux/breadcrumb/breadcrumb.redux';
 
-// import {
-//   changeBreadcrumb,
-//   setOpenKeys,
-//   setSelectedKeys
-// } from '../actions/sysActions';
 import { MyStore } from '../redux';
 import { appConfig, menuRouter } from './router';
 import utils from '../utils';
 
-interface Props extends RouteChildrenProps, DispatchProp {
+import { ActionFunctionAny } from 'redux-actions';
+import { Action } from 'redux';
+
+interface Props extends RouteChildrenProps {
   collapsed: boolean;
   breadcrumb: any[];
   openKeys: string[];
   selectedKeys: string[];
   authInfo: {}[];
+  setopenkeys?: ActionFunctionAny<Action<any>>;
+  setselectkeys?: ActionFunctionAny<Action<any>>;
+  changebreadcrumb?: ActionFunctionAny<Action<any>>;
 }
 
 const mapStateToProps = (store: MyStore) => {
@@ -38,22 +39,22 @@ const mapStateToProps = (store: MyStore) => {
   };
 };
 
-// export default connect(mapStateToProps)(SidebarMenu);
-export default connect(
-  mapStateToProps,
-  {}
-)((props: Props) => {
+export default connect(mapStateToProps, {
+  setopenkeys,
+  setselectkeys,
+  changebreadcrumb
+})((props: Props) => {
   const selectedKeys = props.selectedKeys.map((key) => {
     return key.split('?')[0];
   });
   const handleOpen = (openKeys: string[]) => {
-    props.dispatch(setopenkeys(openKeys));
+    props.setopenkeys && props.setopenkeys(openKeys);
   };
 
   const handleMenu = (params: { key: string; selectedKeys: string[] }) => {
     props.history.push(params.key);
+    props.setselectkeys && props.setselectkeys(params.selectedKeys);
 
-    props.dispatch(setselectkeys(params.selectedKeys));
     setBreadcrumb(params.key);
   };
 
@@ -69,7 +70,8 @@ export default connect(
 
     menuRouter.forEach((item) => {
       if (key.includes(item.path)) {
-        props.dispatch(changebreadcrumb({ path: key, name: item.title }));
+        props.changebreadcrumb &&
+          props.changebreadcrumb({ path: key, name: item.title });
       }
     });
   };
