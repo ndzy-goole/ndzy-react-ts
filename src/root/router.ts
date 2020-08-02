@@ -1,6 +1,8 @@
 import ModuleAPage1 from '../view/moduleA/page1/ModuleAPage1';
 import ModuleAPage2 from '../view/moduleA/page2/ModuleAPage2';
 import ModuleAPage3 from '../view/moduleA/page3/ModuleAPage3';
+import ModuleAPage4 from '../view/moduleA/page4/ModuleAPage4';
+import ModuleAPage5 from '../view/moduleA/page5/ModuleAPage5';
 import ModuleBPage1 from '../view/moduleB/page1/ModuleBPage1';
 import ModuleC from '../view/moduleC/ModuleC';
 import ModuleD from '../view/moduleD/ModuleD';
@@ -20,7 +22,7 @@ const appConfig = {
       subMenu: [
         {
           key: '/moduleA/page1',
-          auth: 'page1-auth',
+          auth: '张一',
           title: '页面1'
         },
         {
@@ -30,8 +32,16 @@ const appConfig = {
         },
         {
           key: '/moduleA/page3',
-          title: '页面3',
-          hidden: true
+          title: '页面3'
+          // hidden: true
+        },
+        {
+          key: '/moduleA/page4',
+          title: '页面4'
+        },
+        {
+          key: '/moduleA/page5',
+          title: '页面5'
         }
       ]
     },
@@ -92,7 +102,23 @@ const menuRouter = [
     component: ModuleAPage3,
     parent: '/moduleA',
     title: '页面3',
-    hidden: true
+    hidden: false
+  },
+  {
+    path: '/moduleA/page4',
+    auth: '',
+    component: ModuleAPage4,
+    parent: '/moduleA',
+    title: '页面4',
+    hidden: false
+  },
+  {
+    path: '/moduleA/page5',
+    auth: '',
+    component: ModuleAPage5,
+    parent: '/moduleA',
+    title: '页面5',
+    hidden: false
   },
   {
     path: '/moduleB/page1',

@@ -27,10 +27,10 @@ const breadcrumbReducer = handleActions(
       return [...state, action.payload];
     },
     RESETBREADCRUMB: (state: { path?: string; name: string }[], action) => {
-      return Object.assign(state, action.payload);
+      return [...action.payload];
     },
     CLEARBREADCRUMB: (state: { path?: string; name: string }[], action) => {
-      return Object.assign(state, action.payload);
+      return [...action.payload];
     }
   },
   breadcrumb

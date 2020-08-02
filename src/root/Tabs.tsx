@@ -1,4 +1,5 @@
 import React, { MouseEvent, useRef, useState } from 'react';
+import './styles/Tab.scss'
 import { connect } from 'react-redux';
 import { CloseOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons';
 
@@ -46,8 +47,12 @@ export default connect(mapStateToProps, { resetbreadcrumb, setselectkeys, setope
   const [left, setLeft] = useState(1)
   const [rightBtn, setRightBtn] = useState(true)
   const [leftBtn, setLeftBtn] = useState(true)
+  const [handleClickPath, setHandleClickPath] = useState('')
 
-
+  /** 
+   * @description 获取 openkey
+   * @param path 
+   */
   const getOpenKeys = (path: string) => {
     if (!path) {
       return [];
@@ -65,6 +70,8 @@ export default connect(mapStateToProps, { resetbreadcrumb, setselectkeys, setope
   }
 
   const handleClick = (path: string) => {
+    setHandleClickPath(path)
+
     history.push(path);
     props.setselectkeys && props.setselectkeys([path])
 
@@ -72,6 +79,7 @@ export default connect(mapStateToProps, { resetbreadcrumb, setselectkeys, setope
     if (!props.collapsed) {
       props.setopenkeys && props.setopenkeys(getOpenKeys(path))
     }
+
   }
 
   const handleCloseTab = (path: string, e: MouseEvent) => {
@@ -86,7 +94,6 @@ export default connect(mapStateToProps, { resetbreadcrumb, setselectkeys, setope
 
       return item.path !== path;
     });
-
     // 删除的是选中的tab时才重设openKey和selectKey
     if (props.selectedKeys.includes(path)) {
       let newPath = '';
@@ -116,6 +123,7 @@ export default connect(mapStateToProps, { resetbreadcrumb, setselectkeys, setope
     let moveW = 0;
 
     if (fixedNode.current) {
+      console.log(fixedNode)
       const { left, width } = fixedNode.current.getBoundingClientRect();
       fixedLeft = left;
       fixedW = width;
@@ -193,11 +201,10 @@ export default connect(mapStateToProps, { resetbreadcrumb, setselectkeys, setope
 
   return (
     <div className="custom-tabs">
-      {/* TODO: */}
-      <span style={{ display: "none" }}>
+      <span >
         <LeftOutlined
           className={`custom-tabs-left ${
-            leftBtn ? '' : 'notActive'
+            leftBtn ? '' : 'custom-tabs-notActive'
             }`}
           onClick={() => {
             moveLeft()
@@ -207,7 +214,7 @@ export default connect(mapStateToProps, { resetbreadcrumb, setselectkeys, setope
         <RightOutlined
           className={`custom-tabs-right ${
             rightBtn
-              ? '' : 'notActive'
+              ? '' : 'custom-tabs-notActive'
             }`}
           onClick={() => {
             moveRight()
@@ -215,7 +222,7 @@ export default connect(mapStateToProps, { resetbreadcrumb, setselectkeys, setope
       </span>
       <div className="custom-tabs-wrap" ref={fixedNode}>
         <div
-          className="custom-tabs-move"
+          className="custom-tabs-wrap-move"
           ref={moveNode}
           style={{ transform: `translateX(${left}px)` }}
         >
@@ -224,19 +231,21 @@ export default connect(mapStateToProps, { resetbreadcrumb, setselectkeys, setope
 
             return (
               <div
-                className={`custom-tabs-item ${bool ? 'active' : ''}`}
+                className={`custom-tabs-wrap-move-item ${bool ? 'custom-tabs-active' : ''}`}
                 key={item.path}
                 onClick={() => {
-                  handleClick(item.path)
+                  if (item.path !== handleClickPath) {
+                    handleClick(item.path)
+                  }
                 }}
               >
-                {!bool && <span className="line"></span>}
+                {!bool && <span className="custom-tabs-wrap-move-item-line"></span>}
 
-                <span className="text">{item.name}</span>
+                <span className="custom-tabs-wrap-move-item-text">{item.name}</span>
 
                 {/* 只是一个tab时不显示删除按钮 */}
                 {props.breadcrumb.length > 1 && (
-                  <CloseOutlined onClick={(e: MouseEvent) => {
+                  <CloseOutlined className="custom-tabs-wrap-move-item-close-icon" onClick={(e: MouseEvent) => {
                     handleCloseTab(item.path, e)
                   }} />
                 )}
