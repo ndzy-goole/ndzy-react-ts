@@ -14,10 +14,10 @@ export const { setselectkeys, clearselectkeys } = createActions({
 const selectKeysReducer = handleActions(
   {
     SETSELECTKEYS: (state: string[], action) => {
-      return Object.assign(state, action.payload);
+      return [...action.payload];
     },
     CLEARSELECTKEYS: (state: string[], action) => {
-      return Object.assign(state, action.payload);
+      return [...action.payload];
     }
   },
   selectKeys

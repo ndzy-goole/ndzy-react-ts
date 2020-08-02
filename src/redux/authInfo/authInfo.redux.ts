@@ -21,10 +21,10 @@ export const { setauthinfo, clearauthinfo } = createActions({
 const authInfoReducer = handleActions(
   {
     SETAUTHINFO: (state: { [propsName: string]: any }[], action) => {
-      return Object.assign(state, action.payload);
+      return [...action.payload];
     },
     CLEARAUTHINFO: (state: { [propsName: string]: any }[], action) => {
-      return Object.assign(state, action.payload);
+      return [...action.payload];
     }
   },
   authInfo

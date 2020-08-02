@@ -123,7 +123,6 @@ export default connect(mapStateToProps, { resetbreadcrumb, setselectkeys, setope
     let moveW = 0;
 
     if (fixedNode.current) {
-      console.log(fixedNode)
       const { left, width } = fixedNode.current.getBoundingClientRect();
       fixedLeft = left;
       fixedW = width;

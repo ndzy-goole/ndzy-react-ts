@@ -3,6 +3,7 @@ import {
   Menu
   // Icon
 } from 'antd';
+import './styles/SidebarMenu.scss'
 import { RouteChildrenProps } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setopenkeys } from '../redux/openKeys/openKeys.redux';
@@ -47,15 +48,10 @@ export default connect(mapStateToProps, {
   const selectedKeys = props.selectedKeys.map((key) => {
     return key.split('?')[0];
   });
+
   const handleOpen = (openKeys: string[]) => {
-    props.setopenkeys && props.setopenkeys(openKeys);
-  };
-
-  const handleMenu = (params: { key: string; selectedKeys: string[] }) => {
-    props.history.push(params.key);
-    props.setselectkeys && props.setselectkeys(params.selectedKeys);
-
-    setBreadcrumb(params.key);
+    // 去重
+    props.setopenkeys && props.setopenkeys(Array.from(new Set(openKeys)));
   };
 
   const setBreadcrumb = (key: string) => {
@@ -75,6 +71,14 @@ export default connect(mapStateToProps, {
       }
     });
   };
+
+  const handleMenu = (params: { key: string; selectedKeys: string[] }) => {
+    props.history.push(params.key);
+    props.setselectkeys && props.setselectkeys(params.selectedKeys);
+    setBreadcrumb(params.key);
+  };
+
+
   // 渲染导航列表
   const renderMenu = (menu: any[]): (JSX.Element | null)[] => {
     let router = menu.map((item) => {
@@ -127,8 +131,10 @@ export default connect(mapStateToProps, {
       mode="inline"
       theme="light"
       inlineCollapsed={props.collapsed}
-      openKeys={props.openKeys}
-      selectedKeys={selectedKeys}
+      defaultOpenKeys={props.openKeys}
+      defaultSelectedKeys={selectedKeys}
+      // openKeys={props.openKeys}
+      // selectedKeys={selectedKeys}
       onOpenChange={(keys: any) => {
         handleOpen(keys);
       }}

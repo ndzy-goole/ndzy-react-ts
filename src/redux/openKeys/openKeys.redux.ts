@@ -13,10 +13,10 @@ export const { setopenkeys, clearopenkeys } = createActions({
 const openKeysReducer = handleActions(
   {
     SETOPENKEYS: (state: string[], action) => {
-      return Object.assign(state, action.payload);
+      return [...action.payload];
     },
     CLEAROPENKEYS: (state: string[], action) => {
-      return Object.assign(state, action.payload);
+      return [...action.payload];
     }
   },
   openKeys

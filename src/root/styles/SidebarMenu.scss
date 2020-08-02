@@ -1,0 +1,125 @@
+.layout-sidebar-menu {
+  background-color: transparent;
+  border-right: none;
+
+  .ant-menu-item {
+    color: #fff;
+
+    &:active {
+      background-color: rgba(26, 117, 175, 0.5);
+    }
+
+    &.ant-menu-item-selected {
+      border-radius: 100px 0px 0px 100px;
+      color: #0088d2;
+      font-weight: 500;
+      background: rgba(238, 240, 243, 1);
+
+      &:after {
+        border: none;
+      }
+    }
+  }
+
+  .ant-menu-submenu-title {
+    color: #fff;
+
+    &:hover {
+      .ant-menu-submenu-arrow {
+        &:before,
+        &:after {
+          background-image: none;
+          background-color: #fff;
+        }
+      }
+    }
+
+    &:active {
+      background-color: rgba(26, 117, 175, 0.5);
+    }
+  }
+
+  .ant-menu-submenu-arrow {
+    &:before,
+    &:after {
+      background-image: none;
+    }
+  }
+
+  .ant-menu-sub {
+    background-color: transparent;
+    color: #fff;
+
+    .ant-menu-item-selected {
+      width: calc(100% - 14px);
+      background: rgba(238, 240, 243, 1);
+      border-radius: 100px 0px 0px 100px;
+      margin-left: 14px;
+      padding-left: 34px !important;
+      color: #0088d2;
+      font-weight: 500;
+
+      &:after {
+        border: none;
+      }
+    }
+
+    .ant-menu-item:not(.ant-menu-item-selected) {
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+
+  .menu-iconfont {
+    margin-right: 10px;
+  }
+
+  .ant-menu-inline-collapsed > .ant-menu-submenu > .ant-menu-submenu-title,
+  .ant-menu-inline-collapsed > .ant-menu-item {
+    padding: 0 20px !important;
+
+    white-space: nowrap;
+
+    .menu-iconfont {
+      margin-right: 0;
+    }
+
+    .menu-iconfont + span {
+      display: inline-block;
+      max-width: 0;
+      opacity: 0;
+    }
+  }
+
+  .ant-menu-inline-collapsed > .ant-menu-item-selected {
+    background-color: transparent !important;
+    color: #fff !important;
+  }
+}
+// 菜单 收起
+.ant-menu-submenu-popup {
+  background: linear-gradient(
+    180deg,
+    rgba(26, 117, 175, 1) 0%,
+    rgba(36, 182, 198, 1) 100%
+  ) !important;
+
+  .ant-menu {
+    background-color: transparent !important;
+  }
+
+  .ant-menu-item {
+    color: #fff;
+  }
+
+  .ant-menu-item-selected {
+    background-color: #fff !important;
+    color: #0088d2;
+    font-weight: 500;
+  }
+
+  .ant-menu-item-active:not(.ant-menu-item-selected):hover {
+    color: #fff;
+  }
+}
