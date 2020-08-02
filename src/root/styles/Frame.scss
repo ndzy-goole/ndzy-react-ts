@@ -83,21 +83,3 @@ $collapsed-color-hover: #3399ff;
     }
   }
 }
-
-.custom-breadcrumbs {
-  height: 100%;
-  background-color: #fff;
-  padding-left: 16px;
-
-  .ant-breadcrumb {
-    line-height: 40px;
-  }
-
-  .active {
-    cursor: pointer;
-
-    &:hover {
-      color: #2d99ff;
-    }
-  }
-}

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
+import './styles/Frame.scss'
 import { connect } from 'react-redux';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { RouteChildrenProps } from 'react-router-dom';
 import PS from 'perfect-scrollbar';
 import { throttle } from 'underscore';
 import 'perfect-scrollbar/css/perfect-scrollbar.css';
-import './frame.scss';
 import { useMount, useUnmount } from 'ahooks';
 
 import SidebarMenu from './SidebarMenu';
@@ -115,12 +115,12 @@ export default connect((state) => state, { changecollapsed, setopenkeys })(
                     }}
                   />
                 ) : (
-                  <MenuFoldOutlined
-                    onClick={() => {
-                      handleCollapsedBtn();
-                    }}
-                  />
-                )}
+                    <MenuFoldOutlined
+                      onClick={() => {
+                        handleCollapsedBtn();
+                      }}
+                    />
+                  )}
               </span>
             </div>
 

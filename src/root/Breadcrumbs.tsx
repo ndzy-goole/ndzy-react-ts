@@ -1,5 +1,6 @@
 import React from 'react';
 import { Breadcrumb } from 'antd';
+import './styles/Breadcrumbs.scss'
 import { connect } from 'react-redux';
 import { RouteChildrenProps } from 'react-router-dom';
 import { menuRouter } from './router';
