@@ -40,3 +40,8 @@ yarn add perfect-scrollbar @types/perfect-scrollbar
 # underscore
 
 yarn add underscore @types/underscore
+
+# nedb
+
+yarn add nedb
+yarn add @types/nedb -D
