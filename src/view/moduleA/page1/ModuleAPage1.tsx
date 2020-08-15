@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { RouteChildrenProps } from 'react-router-dom';
 import './ModuleAPage1.scss';
-import Note from '../../../component/note';
 
 interface Props extends RouteChildrenProps {
   setBreadcrumb: (data: { path?: string; name: string }[] | string) => void;
@@ -27,7 +26,6 @@ export default class ModuleAPage1 extends Component<Props, State> {
     return (
       <div className="ModuleAPage1">
         <h1>页面1</h1>
-        <Note />
       </div>
     );
   }
