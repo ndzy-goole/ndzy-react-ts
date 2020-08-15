@@ -45,6 +45,7 @@
   },
   "scripts": {
     "start": "set BROWSER=none&&set PORT=9000 && react-app-rewired start",
+    "css": "npx postcss src/styles/tailwind.scss -o src/styles/main.scss",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -65,6 +66,9 @@
     ]
   },
   "devDependencies": {
-    "@types/nedb": "^1.8.10"
+    "@types/nedb": "^1.8.10",
+    "autoprefixer": "^9.8.6",
+    "postcss-cli": "^7.1.1",
+    "tailwindcss": "^1.6.2"
   }
 }

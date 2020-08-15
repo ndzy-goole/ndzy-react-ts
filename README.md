@@ -45,3 +45,33 @@ yarn add underscore @types/underscore
 
 yarn add nedb
 yarn add @types/nedb -D
+
+# tailwindcss
+yarn add tailwindcss postcss-cli autoprefixer -D
+
+#
+
+```
+  // 设置面包屑参数
+  const setBreadcrumb_ = () => {
+    // breadcrumb形式设置格式
+    // let arr = [
+    //   { name: '面包屑名称1' },
+    //   { path: '/a/a', name: '面包屑名称2' }
+    // ];
+    // setBreadcrumb(arr);
+    // tab形式设置格式
+    // setBreadcrumb('/moduleA/page3?a=1&b=2');
+  };
+
+// 
+import { RouteChildrenProps } from 'react-router-dom';
+interface Props extends RouteChildrenProps {
+  setBreadcrumb: (data: { path?: string; name: string }[] | string) => void;
+  setAuthInfo: (authInfo: any) => void;
+  clearStore: () => void;
+}
+interface State {
+  [propName: string]: any;
+}
+```
