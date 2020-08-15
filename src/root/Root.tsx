@@ -110,7 +110,6 @@ export default connect(mapStateToProps, {
       <Switch>
         {/* 导航菜单下的子模块 */}
         {menuRouter.map((item) => {
-
           // 路由权限
           if (!utils.hasAuth(item.auth, props.authInfo)) {
             return null;
