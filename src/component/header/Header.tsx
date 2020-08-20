@@ -22,7 +22,7 @@ const Clock = () => {
   });
 
   useEffect(() => {
-    setDateValue(moment(date).format('yyyy-MM-dd hh:mm:ss'));
+    setDateValue(moment(date).format('YYYY-MM-DD HH:mm:ss'));
     setDateValue1(moment(date).format('YYYY-MM-DD-HH-mm-ss'));
   }, [date]);
 
