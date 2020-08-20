@@ -1,13 +1,14 @@
 import React from 'react';
 import { Breadcrumb } from 'antd';
-import './styles/Breadcrumbs.scss'
+import './styles/Breadcrumbs.scss';
 import { connect } from 'react-redux';
 import { RouteChildrenProps } from 'react-router-dom';
-import { menuRouter } from './router';
 import { setselectkeys } from '../redux/selectKeys/selectKeys.redux';
 import { setopenkeys } from '../redux/openKeys/openKeys.redux';
 import { ActionFunctionAny } from 'redux-actions';
 import { Action } from 'redux';
+// utils
+import { getOpenKeys } from '../utils/root';
 
 interface Props extends RouteChildrenProps {
   breadcrumb: any[];
@@ -19,21 +20,6 @@ interface Props extends RouteChildrenProps {
 
 export default connect((state) => state, { setopenkeys, setselectkeys })(
   (props: Props) => {
-    const getOpenKeys = (path: string) => {
-      if (!path) {
-        return [];
-      }
-
-      let openKey = '';
-
-      menuRouter.forEach((item) => {
-        if (item.path === path.split('?')[0]) {
-          openKey = item.parent;
-        }
-      });
-
-      return [openKey];
-    };
     const handleClick = (path: string) => {
       if (path) {
         props.history.push(path);
@@ -45,7 +31,7 @@ export default connect((state) => state, { setopenkeys, setselectkeys })(
         }
       }
     };
-
+    
     return (
       <div className="custom-breadcrumbs">
         <Breadcrumb>

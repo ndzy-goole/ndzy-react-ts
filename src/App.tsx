@@ -1,6 +1,6 @@
 import React from 'react';
 import Root from './root/Root';
-import Header from './component/header/Header';
+import Header from './component/header';
 
 function App() {
   const img = (
