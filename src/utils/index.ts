@@ -7,6 +7,7 @@ import {
   clear,
   remove
 } from './storage';
+import { goPageG } from './goPage';
 
 export default {
   hasAuth,
@@ -15,5 +16,6 @@ export default {
   getLocal,
   getSession,
   clear,
-  remove
+  remove,
+  goPageG
 };

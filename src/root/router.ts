@@ -1,8 +1,8 @@
-import ModuleAPage1 from '../view/moduleA/page1/ModuleAPage1';
-import ModuleAPage2 from '../view/moduleA/page2/ModuleAPage2';
-import ModuleAPage3 from '../view/moduleA/page3/ModuleAPage3';
-import ModuleAPage4 from '../view/moduleA/page4/ModuleAPage4';
-import ModuleAPage5 from '../view/moduleA/page5/ModuleAPage5';
+import PageA1 from '../view/A/page1';
+import PageA2 from '../view/A/page2';
+import PageA3 from '../view/A/page3';
+import PageA4 from '../view/A/page4';
+import PageA5 from '../view/A/page5';
 import ModuleBPage1 from '../view/moduleB/page1/ModuleBPage1';
 import ModuleC from '../view/moduleC/ModuleC';
 import ModuleD from '../view/moduleD/ModuleD';
@@ -15,32 +15,32 @@ const appConfig = {
   '404': true,
   menu: [
     {
-      key: '/moduleA',
+      key: '/A',
       auth: '',
-      title: '模块A',
+      title: 'A',
       icon: 'icon-gongdan',
       subMenu: [
         {
-          key: '/moduleA/page1',
+          key: '/A/page1',
           auth: '张一',
-          title: '页面1'
+          title: '可编辑table'
         },
         {
-          key: '/moduleA/page2',
+          key: '/A/page2',
           auth: '',
           title: '页面2'
         },
         {
-          key: '/moduleA/page3',
+          key: '/A/page3',
           title: '页面3'
           // hidden: true
         },
         {
-          key: '/moduleA/page4',
+          key: '/A/page4',
           title: '页面4'
         },
         {
-          key: '/moduleA/page5',
+          key: '/A/page5',
           title: '页面5'
         }
       ]
@@ -81,42 +81,42 @@ const appConfig = {
 
 const menuRouter = [
   {
-    path: '/moduleA/page1',
+    path: '/A/page1',
     auth: '张一',
-    component: ModuleAPage1,
-    parent: '/moduleA',
-    title: '页面1',
+    component: PageA1,
+    parent: '/A',
+    title: '可编辑table',
     hidden: false
   },
   {
-    path: '/moduleA/page2',
+    path: '/A/page2',
     auth: '',
-    component: ModuleAPage2,
-    parent: '/moduleA',
+    component: PageA2,
+    parent: '/A',
     title: '页面2',
     hidden: false
   },
   {
-    path: '/moduleA/page3',
+    path: '/A/page3',
     auth: '',
-    component: ModuleAPage3,
-    parent: '/moduleA',
+    component: PageA3,
+    parent: '/A',
     title: '页面3',
     hidden: false
   },
   {
-    path: '/moduleA/page4',
+    path: '/A/page4',
     auth: '',
-    component: ModuleAPage4,
-    parent: '/moduleA',
+    component: PageA4,
+    parent: '/A',
     title: '页面4',
     hidden: false
   },
   {
-    path: '/moduleA/page5',
+    path: '/A/page5',
     auth: '',
-    component: ModuleAPage5,
-    parent: '/moduleA',
+    component: PageA5,
+    parent: '/A',
     title: '页面5',
     hidden: false
   },

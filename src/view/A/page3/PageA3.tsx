@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { RouteChildrenProps } from 'react-router-dom';
-import './ModuleAPage3.scss';
+import './PageA3.scss';
 
 interface Props extends RouteChildrenProps {
   setBreadcrumb: (data: { path?: string, name: string }[] | string) => void,
@@ -12,7 +12,7 @@ interface State {
 }
 
 // 页面3
-export default class ModuleAPage3 extends Component<Props, State> {
+export default class PageA3 extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 

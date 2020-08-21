@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { RouteChildrenProps } from 'react-router-dom';
-import './ModuleAPage2.scss';
+import './PageA1.scss';
+import EditableTable from '../.././../component/antd/table/editAbleRow/editAbleRow01';
 
 interface Props extends RouteChildrenProps {
   setBreadcrumb: (data: { path?: string; name: string }[] | string) => void;
@@ -11,22 +12,31 @@ interface State {
   [propName: string]: any;
 }
 
-// 页面2
-export default class ModuleAPage2 extends Component<Props, State> {
+// 页面1
+export default class PageA1 extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-
     this.state = {};
   }
-
   componentDidMount() {
     this.setBreadcrumb();
+  }
+  static getDerivedStateFromProps(props: Props, state: State) {
+    console.log(state);
+    return null;
   }
 
   render() {
     return (
-      <div className="ModuleAPage2">
-        <h1>页面2</h1>
+      <div className="ModuleAPage1">
+        <EditableTable />
+        <h1
+          onClick={() => {
+            this.setState({ a: '1' });
+          }}
+        >
+          页面1
+        </h1>
       </div>
     );
   }

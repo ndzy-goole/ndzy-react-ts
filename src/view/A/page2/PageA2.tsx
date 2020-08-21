@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { RouteChildrenProps } from 'react-router-dom';
-import './ModuleAPage1.scss';
+import './PageA2.scss';
 
 interface Props extends RouteChildrenProps {
   setBreadcrumb: (data: { path?: string; name: string }[] | string) => void;
@@ -11,31 +11,22 @@ interface State {
   [propName: string]: any;
 }
 
-// 页面1
-export default class ModuleAPage1 extends Component<Props, State> {
+// 页面2
+export default class PageA2 extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
+
     this.state = {};
   }
 
   componentDidMount() {
     this.setBreadcrumb();
   }
-  static getDerivedStateFromProps(props: Props, state: State) {
-    console.log(state);
-    return null;
-  }
 
   render() {
     return (
-      <div className="ModuleAPage1">
-        <h1
-          onClick={() => {
-            this.setState({ a: '1' });
-          }}
-        >
-          页面1
-        </h1>
+      <div className="ModuleAPage2">
+        <h1>页面2</h1>
       </div>
     );
   }
