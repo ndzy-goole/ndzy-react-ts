@@ -15,7 +15,7 @@ interface Props extends RouteChildrenProps {
 export default (props: Props) => {
   const handleLogin = () => {
     const authInfo = [{ auth: '张一', name: '页面1' }];
-    const path = '/moduleA/page1?a=1&b=2';
+    const path = '/moduleA/page1';
     props.history.push(path);
     props.setBreadcrumb(path);
     props.setAuthInfo(authInfo);

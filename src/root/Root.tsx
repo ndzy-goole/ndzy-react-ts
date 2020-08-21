@@ -2,9 +2,7 @@ import React from 'react';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { isArray } from 'underscore';
-
 import Frame from './Frame';
-
 import { historyBrowser, historyHash } from './history';
 import { MyStore } from '../redux';
 import { menuRouter, fullScreenRouter, errRouter } from './router';

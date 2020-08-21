@@ -25,8 +25,10 @@ const Clock = () => {
   }, [date]);
 
   return (
-    <div className="flex justify-between px-20">
-      <Paragraph copyable>{dateValue}</Paragraph>
+    <div className="flex justify-between px-20 mr-4">
+      <Paragraph copyable className="mr-8">
+        {dateValue}
+      </Paragraph>
       <Paragraph copyable>{dateValue1}</Paragraph>
     </div>
   );

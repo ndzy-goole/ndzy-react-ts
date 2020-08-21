@@ -1,6 +1,5 @@
 import React from 'react';
 import { Breadcrumb } from 'antd';
-import './styles/Breadcrumbs.scss';
 import { connect } from 'react-redux';
 import { RouteChildrenProps } from 'react-router-dom';
 import { setselectkeys } from '../redux/selectKeys/selectKeys.redux';
@@ -31,15 +30,15 @@ export default connect((state) => state, { setopenkeys, setselectkeys })(
         }
       }
     };
-    
+
     return (
-      <div className="custom-breadcrumbs">
+      <div className="px-4">
         <Breadcrumb>
           {props.breadcrumb.map((item, index) => {
             return (
               <Breadcrumb.Item key={index}>
                 <span
-                  className={item.path ? 'active' : ''}
+                  className={item.path ? 'text-blue-600' : ''}
                   onClick={() => {
                     handleClick(item.path);
                   }}

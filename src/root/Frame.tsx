@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './styles/Frame.scss'
+import './styles/Frame.scss';
 import { connect } from 'react-redux';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { RouteChildrenProps } from 'react-router-dom';
@@ -15,9 +15,11 @@ import Breadcrumbs from './Breadcrumbs';
 import { RootProps } from './Root';
 import { changecollapsed } from '../redux/collapsed/collapsed.redux';
 import { setopenkeys } from '../redux/openKeys/openKeys.redux';
-import { menuRouter } from './router';
 import { ActionFunctionAny } from 'redux-actions';
 import { Action } from 'redux';
+
+// utils
+import { getOpenKeys } from '../utils/root';
 
 interface Props extends RootProps, RouteChildrenProps {
   collapsed: boolean;
@@ -32,21 +34,6 @@ export default connect((state) => state, { changecollapsed, setopenkeys })(
     const { collapsed, headerHeight } = props;
     const sidebarWidth = collapsed ? 56 : 220; //侧边栏收缩和展开的宽度
     const [menuScroll, setMenuScroll] = useState<any>();
-    /**
-     * @description 获取 openKeys
-     * @param path
-     */
-    const getOpenKeys = (path: string) => {
-      let openKey = '';
-
-      menuRouter.forEach((item) => {
-        if (item.path === path.split('?')[0]) {
-          openKey = item.parent;
-        }
-      });
-
-      return [openKey];
-    };
 
     const handleCollapsedBtn = () => {
       props.changecollapsed && props.changecollapsed(!props.collapsed);
@@ -105,7 +92,7 @@ export default connect((state) => state, { changecollapsed, setopenkeys })(
           className="layout-right"
           style={{ width: `calc(100% - ${sidebarWidth}px)` }}
         >
-          <div className="layout-header" style={{ height: headerHeight }}>
+          <div className="layout-header flex" style={{ height: headerHeight }}>
             <div>
               <span className="collapsed-btn">
                 {collapsed ? (
@@ -115,12 +102,12 @@ export default connect((state) => state, { changecollapsed, setopenkeys })(
                     }}
                   />
                 ) : (
-                    <MenuFoldOutlined
-                      onClick={() => {
-                        handleCollapsedBtn();
-                      }}
-                    />
-                  )}
+                  <MenuFoldOutlined
+                    onClick={() => {
+                      handleCollapsedBtn();
+                    }}
+                  />
+                )}
               </span>
             </div>
 

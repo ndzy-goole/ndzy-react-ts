@@ -3,7 +3,7 @@ import {
   Menu
   // Icon
 } from 'antd';
-import './styles/SidebarMenu.scss'
+import './styles/SidebarMenu.scss';
 import { RouteChildrenProps } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setopenkeys } from '../redux/openKeys/openKeys.redux';
@@ -78,7 +78,6 @@ export default connect(mapStateToProps, {
     setBreadcrumb(params.key);
   };
 
-
   // 渲染导航列表
   const renderMenu = (menu: any[]): (JSX.Element | null)[] => {
     let router = menu.map((item) => {
@@ -133,8 +132,8 @@ export default connect(mapStateToProps, {
       inlineCollapsed={props.collapsed}
       defaultOpenKeys={props.openKeys}
       defaultSelectedKeys={selectedKeys}
-      // openKeys={props.openKeys}
-      // selectedKeys={selectedKeys}
+      openKeys={props.openKeys}
+      selectedKeys={selectedKeys}
       onOpenChange={(keys: any) => {
         handleOpen(keys);
       }}

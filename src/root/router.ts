@@ -23,7 +23,7 @@ const appConfig = {
         {
           key: '/moduleA/page1',
           auth: '张一',
-          title: '页面111111111111111111111111111111111111111111111111'
+          title: '页面1'
         },
         {
           key: '/moduleA/page2',
@@ -85,7 +85,7 @@ const menuRouter = [
     auth: '张一',
     component: ModuleAPage1,
     parent: '/moduleA',
-    title: '页面111111111111111111111111111111111111111111111111',
+    title: '页面1',
     hidden: false
   },
   {
