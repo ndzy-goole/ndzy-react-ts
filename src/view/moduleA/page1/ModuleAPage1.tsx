@@ -21,11 +21,21 @@ export default class ModuleAPage1 extends Component<Props, State> {
   componentDidMount() {
     this.setBreadcrumb();
   }
+  static getDerivedStateFromProps(props: Props, state: State) {
+    console.log(state);
+    return null;
+  }
 
   render() {
     return (
       <div className="ModuleAPage1">
-        <h1>页面1</h1>
+        <h1
+          onClick={() => {
+            this.setState({ a: '1' });
+          }}
+        >
+          页面1
+        </h1>
       </div>
     );
   }
