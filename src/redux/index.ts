@@ -39,6 +39,10 @@ const reducer = combineReducers({
   collapsed,
   authInfo
 });
+if (utils.getSession(HISTORY_KEY)) {
+  console.log('11');
+}
+console.log(utils.getSession(HISTORY_KEY));
 const state = utils.getSession(HISTORY_KEY);
 let initState = {};
 

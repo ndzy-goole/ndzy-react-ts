@@ -4,10 +4,6 @@ export interface AuthInfoStore {
   authInfo: { [propsName: string]: any }[];
 }
 
-// const initialStore: AuthInfoStore = {
-//   authInfo: []
-// };
-
 const authInfo: { [propsName: string]: any }[] = [];
 
 export const { setauthinfo, clearauthinfo } = createActions({
@@ -24,6 +20,7 @@ const authInfoReducer = handleActions(
       return action.payload.length > 0 ? [...action.payload] : [];
     },
     CLEARAUTHINFO: (state: { [propsName: string]: any }[], action) => {
+      console.log(action);
       return action.payload;
     }
   },

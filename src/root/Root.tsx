@@ -13,9 +13,7 @@ import {
 } from '../redux/breadcrumb/breadcrumb.redux';
 import { setselectkeys } from '../redux/selectKeys/selectKeys.redux';
 import { setopenkeys } from '../redux/openKeys/openKeys.redux';
-
 import utils from '../utils';
-import { HISTORY_KEY } from '../constant/sysConstant';
 import { ActionFunctionAny } from 'redux-actions';
 import { Action } from 'redux';
 
@@ -58,9 +56,7 @@ export default connect(mapStateToProps, {
   setopenkeys
 })((props: RootProps) => {
   const clearStore = () => {
-    utils.remove(HISTORY_KEY); //清除缓存的store数据
-    // TODO: 重置 store
-    // props.dispatch(clearStore());
+    utils.clearStore();
   };
 
   /**
