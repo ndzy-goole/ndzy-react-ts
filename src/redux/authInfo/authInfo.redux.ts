@@ -20,7 +20,6 @@ const authInfoReducer = handleActions(
       return action.payload.length > 0 ? [...action.payload] : [];
     },
     CLEARAUTHINFO: (state: { [propsName: string]: any }[], action) => {
-      console.log(action);
       return action.payload;
     }
   },

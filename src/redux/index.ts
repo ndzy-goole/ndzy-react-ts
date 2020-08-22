@@ -7,7 +7,7 @@ import breadcrumb from './breadcrumb';
 import collapsed from './collapsed';
 import authInfo from './authInfo';
 
-import utils from '../utils';
+import { getSession } from '../utils';
 import { HISTORY_KEY } from '../constant/sysConstant';
 import cacheData from './middleware/cacheData';
 
@@ -39,16 +39,13 @@ const reducer = combineReducers({
   collapsed,
   authInfo
 });
-if (utils.getSession(HISTORY_KEY)) {
-  console.log('11');
-}
-console.log(utils.getSession(HISTORY_KEY));
-const state = utils.getSession(HISTORY_KEY);
-let initState = {};
+let initState;
 
+const state = getSession(HISTORY_KEY);
 if (state) {
   initState = state[0].state;
 }
+
 //  window.STATE_FROM_SERVER 可以有第二个参数,表示 State 的最初状态。这通常是服务器给出的。
 const store = createStore(reducer, initState, applyMiddleware(...middlewares));
 

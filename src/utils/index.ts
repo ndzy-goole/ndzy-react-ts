@@ -8,9 +8,8 @@ import {
   remove
 } from './storage';
 import { goPageG } from './goPage';
-import { clearStore } from './clearStore';
 
-export default {
+export {
   hasAuth,
   setSession,
   setLocal,
@@ -18,6 +17,5 @@ export default {
   getSession,
   clear,
   remove,
-  goPageG,
-  clearStore
+  goPageG
 };

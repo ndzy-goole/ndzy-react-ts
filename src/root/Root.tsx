@@ -13,7 +13,9 @@ import {
 } from '../redux/breadcrumb/breadcrumb.redux';
 import { setselectkeys } from '../redux/selectKeys/selectKeys.redux';
 import { setopenkeys } from '../redux/openKeys/openKeys.redux';
-import utils from '../utils';
+import { hasAuth } from '../utils';
+import { clearStore } from '../utils/clearStore';
+
 import { ActionFunctionAny } from 'redux-actions';
 import { Action } from 'redux';
 
@@ -55,10 +57,6 @@ export default connect(mapStateToProps, {
   setselectkeys,
   setopenkeys
 })((props: RootProps) => {
-  const clearStore = () => {
-    utils.clearStore();
-  };
-
   /**
    * @description 设置权限信息
    * @param authInfo
@@ -105,7 +103,7 @@ export default connect(mapStateToProps, {
         {/* 导航菜单下的子模块 */}
         {menuRouter.map((item) => {
           // 路由权限
-          if (!utils.hasAuth(item.auth, props.authInfo)) {
+          if (!hasAuth(item.auth, props.authInfo)) {
             return null;
           }
           return (

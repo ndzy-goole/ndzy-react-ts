@@ -22,7 +22,6 @@ export default class PageA1 extends Component<Props, State> {
     this.setBreadcrumb();
   }
   static getDerivedStateFromProps(props: Props, state: State) {
-    console.log(state);
     return null;
   }
 

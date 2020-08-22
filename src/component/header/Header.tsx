@@ -1,6 +1,7 @@
 import React from 'react';
 import Clock from '../clock';
-import utils from '../../utils';
+import { clearStore } from '../../utils/clearStore';
+import { goPageG } from '../../utils';
 
 export default (props: any) => {
   return (
@@ -9,8 +10,8 @@ export default (props: any) => {
 
       <div
         onClick={() => {
-          utils.clearStore();
-          utils.goPageG('/login');
+          clearStore();
+          goPageG('/login');
         }}
       >
         退出

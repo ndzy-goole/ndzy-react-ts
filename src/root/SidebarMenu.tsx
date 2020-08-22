@@ -12,7 +12,7 @@ import { changebreadcrumb } from '../redux/breadcrumb/breadcrumb.redux';
 
 import { MyStore } from '../redux';
 import { appConfig, menuRouter } from './router';
-import utils from '../utils';
+import { hasAuth } from '../utils';
 
 import { ActionFunctionAny } from 'redux-actions';
 import { Action } from 'redux';
@@ -82,7 +82,7 @@ export default connect(mapStateToProps, {
   const renderMenu = (menu: any[]): (JSX.Element | null)[] => {
     let router = menu.map((item) => {
       // 配置隐藏的页面不在侧边栏显示
-      if (item.hidden || !utils.hasAuth(item.auth, props.authInfo)) {
+      if (item.hidden || !hasAuth(item.auth, props.authInfo)) {
         return null;
       }
 
