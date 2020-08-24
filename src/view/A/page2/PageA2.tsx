@@ -29,7 +29,7 @@ export default class PageA2 extends Component<Props, State> {
     return (
       <div className="ModuleAPage2">
         <h1>页面2</h1>
-        <Button onClick={this.handleClick.bind(this)}>点击</Button>
+        <Button onClick={this.handleClick.bind(this)}>更新props</Button>
         {this.state.number < 5 ? (
           <Son1 number={this.state.number}></Son1>
         ) : null}
