@@ -3,7 +3,7 @@ import PageA2 from '../view/A/page2';
 import PageA3 from '../view/A/page3';
 import PageA4 from '../view/A/page4';
 import PageA5 from '../view/A/page5';
-import ModuleBPage1 from '../view/moduleB/page1/ModuleBPage1';
+import PageB1 from '../view/B/page1';
 import ModuleC from '../view/moduleC/ModuleC';
 import ModuleD from '../view/moduleD/ModuleD';
 
@@ -46,15 +46,15 @@ const appConfig = {
       ]
     },
     {
-      key: '/moduleB',
+      key: '/B',
       auth: '',
-      title: '模块B',
+      title: 'B',
       icon: 'appstore',
       subMenu: [
         {
-          key: '/moduleB/page1',
+          key: '/B/page1',
           auth: '',
-          title: 'moduleB页面1'
+          title: 'class生命周期'
         }
       ]
     },
@@ -121,11 +121,11 @@ const menuRouter = [
     hidden: false
   },
   {
-    path: '/moduleB/page1',
+    path: '/B/page1',
     auth: '',
-    component: ModuleBPage1,
-    parent: '/moduleB',
-    title: 'moduleB页面1',
+    component: PageB1,
+    parent: '/B',
+    title: 'class生命周期',
     hidden: false
   },
   {
