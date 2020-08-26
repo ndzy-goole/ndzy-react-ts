@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { RouteChildrenProps } from 'react-router-dom';
 import './PageA2.scss';
+import Son1 from './Son1';
+import { Button } from 'antd';
 
 interface Props extends RouteChildrenProps {
   setBreadcrumb: (data: { path?: string; name: string }[] | string) => void;
@@ -16,7 +18,7 @@ export default class PageA2 extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    this.state = {};
+    this.state = { number: 0 };
   }
 
   componentDidMount() {
@@ -27,6 +29,10 @@ export default class PageA2 extends Component<Props, State> {
     return (
       <div className="ModuleAPage2">
         <h1>页面2</h1>
+        <Button onClick={this.handleClick.bind(this)}>更新props</Button>
+        {this.state.number < 5 ? (
+          <Son1 number={this.state.number}></Son1>
+        ) : null}
       </div>
     );
   }
@@ -42,4 +48,9 @@ export default class PageA2 extends Component<Props, State> {
     // tab形式设置格式
     // this.props.setBreadcrumb('/moduleA/page3?a=1&b=2');
   }
+  handleClick = () => {
+    this.setState({
+      number: this.state.number + 1
+    });
+  };
 }
