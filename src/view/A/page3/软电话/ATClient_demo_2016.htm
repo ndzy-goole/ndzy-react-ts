@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <title>CallThink 呼叫中心平台 SDK-客户端控件 ATClient.http 演示</title>
+    <link rel="stylesheet" type="text/css" href="./images/style.css" />
+
+    <script language="JavaScript" type="text/javascript" src="./jquery-1.11.3.min.js"></script>
+    <script language="JavaScript" type="text/javascript" src="./ATClient.js"></script>
+    <script language="JavaScript" type="text/javascript" src="./ATClient.ws.js"></script>
+
+    <script language="JavaScript" type="text/javascript" src="ATClient_demo.js"></script>
+
+
+    <style type="text/css" media="screen">
+        html, body
+        {
+            height: 100%;
+        }
+        body
+        {
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+            text-align: left;
+            background-color: #ffffff;
+        }
+        object:focus
+        {
+            outline: none;
+        }
+        #flashContent
+        {
+            display: none;
+        }
+    </style>
+
+</head>
+<body>
+    <form name="frmDemo" id="frmDemo" action="">
+    <div id="top_title">
+        CallThink 呼叫中心平台 SDK-客户端控件 ATClient.http 演示</div>
+    <div id="main" style="width: 98%">
+        <!-------------------------设置CTI服务器---------------------------------------->
+        <div class="title_1">
+            <div class="title_2"> 登录CTI服务器</div>
+        </div>
+        <div class="conter">
+            <table id="login" style="height: 25px;">
+                <tr>
+                    <td width="100" align="right">
+                        CTI代理服务器：
+                    </td>
+                    <td width="132" align="center">
+                        <input name="btnConnect" onclick="Connect_CTI()" type="button" value="连接CTI服务器" />
+                    </td>
+                    <td width="136" align="center">
+                        <input name="btnDisConnect" onclick="DisConnect_CTI()" type="button" value="断开CTI服务器" />
+                    </td>
+                    <td width="479">
+                    </td>
+                </tr>
+            </table>
+            <table id="Table1" style="height: 25px;">
+                <tr>
+                    <td width="98" align="right">
+                        座席员工号：
+                    </td>
+                    <td width="140">
+                        <input type="text" id="txtUid" value="8608" size="20" />
+                    </td>
+                    <td width="60" align="right">
+                        密 码：
+                    </td>
+                    <td width="92" align="center">
+                        <input type="text" id="txtPwd" value='5266' size='12' />
+                    </td>
+                    <td width="69" align="right">
+                        分机号：
+                    </td>
+                    <td width="90" align="center">
+                        <input type="text" id="txtExt" value='608' size='12' />
+                    </td>
+                    <td width="75" align="center">
+                        <input name="btnLogin" onclick="client_login()" type="button" value="座席登入" />
+                    </td>
+                    <td width="84" align="center">
+                        <input name="btnLogout" onclick="client_logout()" type="button" value="座席登出" />
+                    </td>
+                    <td width="260">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br />
+        <!-------------------------软电话命令---------------------------------------->
+        <div class="title_1">
+            <div class="title_2">软电话命令</div>
+        </div>
+        <div class="conter" style="display: block">
+            <ul>
+                <li>工作状态 - 设置状态
+                    <input name="btnSetBusy" onclick="AT_Command('SetBusy')" type="button" value="座席置忙"
+                        id="Button2" />
+                    <input name="btnSetNoBusy" onclick="AT_Command('SetNoBusy')" type="button" value="取消置忙"
+                        id="Button3" />
+                    |
+                    <input name="btnSetLeave" onclick="AT_Command('SetLeave')" type="button" value="离席"
+                        id="Button7" />
+                    <input name="btnSetNoLeave" onclick="AT_Command('SetNoLeave')" type="button" value="取消离席"
+                        id="Button8" />
+                    |
+                    <input name="btnAfterWorking" onclick="AT_Command('AfterWorking')" type="button"
+                        value="进入事后处理" id="Button9" />
+                    <input name="btnAfterNoWorking" onclick="AT_Command('AfterNoWorking')" type="button"
+                        value="取消事后处理" id="Button10" />
+                    <input type="text" id="txtCause" value='开会' size='12' />
+                </li>
+                <li>电话呼叫 -
+                    <input name="btnPlaceCall" onclick="AT_Command('PlaceCall')" type="button" value="呼叫电话"
+                        id="Button1" />
+                    被叫号码&nbsp;&nbsp;
+                    <input type="text" id="txtTel" value='' size='12' />
+                    <input name="btnPickup" onclick="AT_Command('Pickup')" type="button" value="摘 机"
+                        id="Button4" />
+                    <input name="btnHangup" onclick="AT_Command('Hangup')" type="button" value="挂 机" />
+                    <input name="btnPickup_dj" onclick="AT_Command('Pickup_dj')" type="button" value="代 接"
+                        id="btnPick" /></li>
+                <li>转接电话 -
+                    <input name="btnHoldCall" onclick="AT_Command('HoldCall')" type="button" value="保持呼叫" />
+                    <input name="btnRetrCall" onclick="AT_Command('RetriveCall')" type="button" value="恢复呼叫" />
+                    |
+                    <input name="btnTransCall" onclick="AT_Command('TransCall')" type="button" value="单步转接" />
+                    目标分机
+                    <input type="text" id="txtTel_tran" value='' size='12' />
+                    |
+                    <input name="btnTransCall" onclick="AT_Command('ConsTrans')" type="button" value="协商转接" />
+                    <input name="btnTransCall" onclick="AT_Command('TranOver')" type="button" value="协商转接完成" />
+                    |
+                    <input name="btnTransIVR" onclick="AT_Command('TransIVR')" type="button" value="转接IVR" />
+                    <input type="text" id="txtIvrFile" value='flow_day.dat' size='12' />
+                    节点号：
+                    <input type="text" id="txtIvrNode" value='100' size='7' />
+                </li>
+                <li>建立会议 -
+                    <input name="btnConf_est" onclick="AT_Command('Conf_est')" type="button" value="单步建立会议"
+                        id="Button6" />
+                    分机/外线会议号码：
+                    <input type="text" id="txtTel_conf" value='600' size='15' />
+                    |
+                    <input name="btnConsConf" onclick="AT_Command('ConsConf')" type="button" value="协商会议" />
+                    <input name="btnConfOver" onclick="AT_Command('ConfOver')" type="button" value="协商会议完成" />
+                </li>
+                <li>监听、强插、强拆 -
+                    <input name="btnConference0" onclick="AT_Command('MoniExt')" type="button" value="监 听" />
+                    <input name="btnConference1" onclick="AT_Command('Insert')" type="button" value="强 插" />
+                    <input name="btnConference2" onclick="AT_Command('DisConnect')" type="button" value="强 拆" />
+                    目标分机：
+                    <input type="text" id="txtTel_insert" value='600' size='12' />
+                </li>
+                <li>发送消息 -
+                    <input id="SendNote" onclick="AT_Command('SendNote')" type="button" value="发送公文" />
+                    目标工号：
+                    <input type="text" id="txtDest" value='' size='12' />
+                    <input id="SendEmail" onclick="AT_Command('SendEmail')" type="button" value="发送邮件" />
+                    邮件地址：
+                    <input type="text" id="txtEmail" value='tech@allytel.com.cn' size='30' />
+                    <input id="SendSms" onclick="AT_Command('SendSms')" type="button" value="发送短信" />
+                    手机号码：
+                    <input type="text" id="txtMobile" value='1390xxx' size='15' />
+                    <br />
+                    发送内容：
+                    <input type="text" id="txtMsg" value='该命令用于在线座席之间传送实时消息，格式可自己定义。' size='80' />
+                </li>
+            </ul>
+        </div>
+        <!-------------------------当前状态---------------------------------------->
+        <div class="title_1">
+            <div class="title_2">当前状态</div>
+        </div>
+        <div class="conter" style="height: 100%; width: 100%; display: block">
+            <textarea id="Prompt" cols="100%" name="Prompt" rows="20"></textarea>
+            <input name="ClearDisp" style="vertical-align:top;" onclick="btn_Command('ClearDisp')" type="button" value="清除显示" />
+        </div>
+    </div>
+    </form>
+</body>
+</html>
