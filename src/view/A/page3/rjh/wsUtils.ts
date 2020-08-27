@@ -1,5 +1,6 @@
 import base from './base';
 declare const window: {
+  // ws--- gtlobal
   get_ie_str: any;
   get_ie_int: any;
   myEncode_build_login: any;
@@ -7,6 +8,8 @@ declare const window: {
   myEncode_build_TimerEcho: any;
   // ---------------- WebSocket
   WebSocket: any;
+  // ATClient 接口
+  ATGetCallInfo: any;
 };
 export function ATClient_available() {
   var a = false;
