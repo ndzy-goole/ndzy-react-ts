@@ -81,10 +81,34 @@ export default connect((state) => state, { changecollapsed, setopenkeys })(
           </div>
           <div
             id="menu-scrollbar"
-            className="layout-sidebar-content"
-            style={{ height: `calc(100% - ${headerHeight}px)` }}
+            className="layout-sidebar-content mb-20"
+            style={{ height: `calc(100% - ${headerHeight + 144}px)` }}
           >
             <SidebarMenu {...props} />
+          </div>
+          <div
+            className="h-12 "
+            style={{
+              width: '100%',
+              textAlign: 'center',
+              lineHeight: '40px'
+            }}
+          >
+            <span className="collapsed-btn h-12 bg-gray-200">
+              {collapsed ? (
+                <MenuUnfoldOutlined
+                  onClick={() => {
+                    handleCollapsedBtn();
+                  }}
+                />
+              ) : (
+                <MenuFoldOutlined
+                  onClick={() => {
+                    handleCollapsedBtn();
+                  }}
+                />
+              )}
+            </span>
           </div>
         </div>
 
@@ -93,27 +117,8 @@ export default connect((state) => state, { changecollapsed, setopenkeys })(
           style={{ width: `calc(100% - ${sidebarWidth}px)` }}
         >
           <div className="layout-header flex" style={{ height: headerHeight }}>
-            <div>
-              <span className="collapsed-btn">
-                {collapsed ? (
-                  <MenuUnfoldOutlined
-                    onClick={() => {
-                      handleCollapsedBtn();
-                    }}
-                  />
-                ) : (
-                  <MenuFoldOutlined
-                    onClick={() => {
-                      handleCollapsedBtn();
-                    }}
-                  />
-                )}
-              </span>
-            </div>
-
             {props.headerComponent}
           </div>
-
           <div className="layout-breadcrumb" style={{ height: 40 }}>
             {props.navType === 'tab' && <Tabs {...props} />}
             {props.navType === 'breadcrumb' && <Breadcrumbs {...props} />}
