@@ -15,7 +15,7 @@ function App() {
       return img;
     }
     return (
-      <div className="flex">
+      <div className="flex justify-center">
         {img} <span className="mx-auto px-4">ndzy</span>
       </div>
     );

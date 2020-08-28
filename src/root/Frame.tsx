@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './styles/Frame.scss';
 import { connect } from 'react-redux';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { RouteChildrenProps } from 'react-router-dom';
@@ -74,27 +73,28 @@ export default connect((state) => state, { changecollapsed, setopenkeys })(
       setMenuScroll(null);
     });
     return (
-      <div className="layout-frame">
-        <div className="layout-sidebar" style={{ width: sidebarWidth }}>
-          <div className="layout-logo" style={{ height: headerHeight }}>
+      <div className="h-full w-full bg-gray-200 relative overflow-hidden ">
+        {/* left */}
+        {/* duration-300 过渡动画 */}
+        <div
+          className="h-full absolute top-0 left-0 bg-teal-500 duration-300"
+          style={{ width: sidebarWidth }}
+        >
+          {/* logo */}
+          <div className="relative" style={{ height: headerHeight }}>
             {props.logo(props.collapsed)}
           </div>
+          {/* 导航菜单 */}
           <div
             id="menu-scrollbar"
-            className="layout-sidebar-content mb-20"
-            style={{ height: `calc(100% - ${headerHeight + 144}px)` }}
+            className="w-full relative overflow-hidden "
+            style={{ height: `calc(100% - ${headerHeight + 40}px)` }}
           >
             <SidebarMenu {...props} />
           </div>
-          <div
-            className="h-12 "
-            style={{
-              width: '100%',
-              textAlign: 'center',
-              lineHeight: '40px'
-            }}
-          >
-            <span className="collapsed-btn h-12 bg-gray-200">
+          {/* 收缩按钮 */}
+          <div className="h-8 w-full text-center ">
+            <span className=" text-2xl">
               {collapsed ? (
                 <MenuUnfoldOutlined
                   onClick={() => {
@@ -111,21 +111,30 @@ export default connect((state) => state, { changecollapsed, setopenkeys })(
             </span>
           </div>
         </div>
-
+        {/* right */}
         <div
-          className="layout-right"
-          style={{ width: `calc(100% - ${sidebarWidth}px)` }}
+          className=" h-full absolute top-0"
+          style={{
+            width: `calc(100% - ${sidebarWidth}px)`,
+            left: sidebarWidth
+          }}
         >
-          <div className="layout-header flex" style={{ height: headerHeight }}>
+          {/* 头部 */}
+          <div
+            className="w-full overflow-hidden relative bg-white border-b  p-4"
+            style={{ height: headerHeight }}
+          >
             {props.headerComponent}
           </div>
-          <div className="layout-breadcrumb" style={{ height: 40 }}>
+          {/* 头部导航栏 */}
+          <div className="w-full overflow-hidden" style={{ height: 40 }}>
             {props.navType === 'tab' && <Tabs {...props} />}
             {props.navType === 'breadcrumb' && <Breadcrumbs {...props} />}
           </div>
 
+          {/* 页面主体 */}
           <div
-            className="layout-content"
+            className="w-full p-4 overflow-hidden"
             style={{ height: `calc(100% - ${headerHeight + 40}px)` }}
           >
             {props.children}
