@@ -1,4 +1,4 @@
-import { clearauthinfo } from '../redux/authInfo/authInfo.redux';
+import { authInfoAction } from '../redux/authInfo/authInfo.redux';
 import { clearbreadcrumb } from '../redux/breadcrumb/breadcrumb.redux';
 import { clearselectkeys } from '../redux/selectKeys/selectKeys.redux';
 import { clearopenkeys } from '../redux/openKeys/openKeys.redux';
@@ -8,7 +8,7 @@ import { HISTORY_KEY } from '../constant/sysConstant';
 import { remove } from '../utils';
 
 export function clearStore() {
-  store.dispatch(clearauthinfo());
+  store.dispatch(authInfoAction.clearStore());
   store.dispatch(clearbreadcrumb());
   store.dispatch(clearselectkeys());
   store.dispatch(clearopenkeys());

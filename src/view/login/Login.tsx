@@ -13,6 +13,7 @@ interface Props extends RouteChildrenProps {
 }
 
 export default (props: Props) => {
+  console.log(props);
   const handleLogin = () => {
     const authInfo = [{ auth: '张一', name: '页面1' }];
     const path = '/A/page1';

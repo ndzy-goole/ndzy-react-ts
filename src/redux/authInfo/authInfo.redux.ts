@@ -1,25 +1,23 @@
 import { createActions, handleActions } from 'redux-actions';
+import { SET_AUTH_INFO, CLEAR_STORE } from '../actionTypes';
+import { AnyObj } from '@/types';
 
-export interface AuthInfoStore {
-  authInfo: { [propsName: string]: any }[];
-}
+const authInfo: AnyObj[] = [];
 
-const authInfo: { [propsName: string]: any }[] = [];
-
-export const { setauthinfo, clearauthinfo } = createActions({
-  SETAUTHINFO: (authInfo: { [propsName: string]: any }[]) => {
+export const authInfoAction = createActions({
+  [SET_AUTH_INFO]: (authInfo: AnyObj[]) => {
     return authInfo;
   },
-  CLEARAUTHINFO: () => {
+  [CLEAR_STORE]: () => {
     return [];
   }
 });
 const authInfoReducer = handleActions(
   {
-    SETAUTHINFO: (state: { [propsName: string]: any }[], action) => {
-      return action.payload.length > 0 ? [...action.payload] : [];
+    [SET_AUTH_INFO]: (state: AnyObj[], action) => {
+      return [...action.payload];
     },
-    CLEARAUTHINFO: (state: { [propsName: string]: any }[], action) => {
+    [CLEAR_STORE]: (state: AnyObj[], action) => {
       return action.payload;
     }
   },

@@ -6,7 +6,7 @@ import { InitProps } from '@/types';
 
 export default (props: InitProps) => {
   return (
-    <>
+    <div className="flex">
       <Clock></Clock>
 
       <div
@@ -17,6 +17,6 @@ export default (props: InitProps) => {
       >
         退出
       </div>
-    </>
+    </div>
   );
 };

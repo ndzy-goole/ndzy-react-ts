@@ -6,7 +6,7 @@ import Frame from './Frame';
 import { historyBrowser, historyHash } from './history';
 import { MyStore } from '../redux';
 import { menuRouter, fullScreenRouter, errRouter } from './router';
-import { setauthinfo } from '../redux/authInfo/authInfo.redux';
+import { authInfoAction } from '../redux/authInfo/authInfo.redux';
 import {
   resetbreadcrumb,
   changebreadcrumb
@@ -24,6 +24,8 @@ const history = {
   hash: historyHash
 };
 
+const setAuthInfo = authInfoAction.setAuthInfo;
+
 export interface RootProps {
   logo: (collapsed: boolean) => JSX.Element;
   headerHeight: number;
@@ -38,7 +40,7 @@ export interface RootProps {
   changebreadcrumb?: ActionFunctionAny<Action<any>>;
   setselectkeys?: ActionFunctionAny<Action<any>>;
   setopenkeys?: ActionFunctionAny<Action<any>>;
-  setauthinfo?: ActionFunctionAny<Action<any>>;
+  setAuthInfo?: ActionFunctionAny<Action<any>>;
 }
 
 const mapStateToProps = (store: MyStore) => {
@@ -52,18 +54,12 @@ const mapStateToProps = (store: MyStore) => {
 
 const Root = connect(mapStateToProps, {
   resetbreadcrumb,
-  setauthinfo,
+  setAuthInfo,
   changebreadcrumb,
   setselectkeys,
   setopenkeys
 })((props: RootProps) => {
-  /**
-   * @description 设置权限信息
-   * @param authInfo
-   */
-  const setAuthInfo = (authInfo: any[]) => {
-    props.setauthinfo && props.setauthinfo(authInfo);
-  };
+  
   /**
    * @description 设置面包屑
    * @param data
@@ -125,7 +121,7 @@ const Root = connect(mapStateToProps, {
                         setBreadcrumb(data);
                       }}
                       setAuthInfo={(authInfo: any) => {
-                        setAuthInfo(authInfo);
+                        props.setAuthInfo && props.setAuthInfo(authInfo);
                       }}
                     />
                   </Frame>
@@ -155,7 +151,7 @@ const Root = connect(mapStateToProps, {
                       setBreadcrumb(data);
                     }}
                     setAuthInfo={(authInfo: any) => {
-                      setAuthInfo(authInfo);
+                      props.setAuthInfo && props.setAuthInfo(authInfo);
                     }}
                   />
                 );
@@ -180,7 +176,7 @@ const Root = connect(mapStateToProps, {
                   setBreadcrumb(data);
                 }}
                 setAuthInfo={(authInfo: any) => {
-                  setAuthInfo(authInfo);
+                  props.setAuthInfo && props.setAuthInfo(authInfo);
                 }}
               />
             );
