@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@share/*": [
+        "src/share/*"
+      ],
+      "@mocks/*": [
+        "src/mocks/*"
+      ],
+      "@static/*": [
+        "src/static/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@containers/*": [
+        "src/containers/*"
+      ]
+    }
+  }
+}

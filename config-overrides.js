@@ -16,7 +16,8 @@ module.exports = override(
   }),
   // 路径别名
   addWebpackAlias({
-    ['@components']: path.resolve(__dirname, 'src/components')
+    ['@components']: path.resolve(__dirname, 'src/components'),
+    ['@']: path.resolve(__dirname, 'src')
   }),
   addLessLoader({
     javascriptEnabled: true,

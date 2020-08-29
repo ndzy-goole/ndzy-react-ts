@@ -75,3 +75,4 @@ interface State {
   [propName: string]: any;
 }
 ```
+# 配置文件别名

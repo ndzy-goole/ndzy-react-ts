@@ -1,5 +1,5 @@
-import PageA1 from '../view/A/page1';
-import PageA2 from '../view/A/page2';
+import PageA1 from '@/view/A/page1';
+import PageA2 from '@/view/A/page2';
 import PageA3 from '../view/A/page3';
 import PageA4 from '../view/A/page4';
 import PageA5 from '../view/A/page5';
