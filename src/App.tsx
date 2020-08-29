@@ -1,7 +1,7 @@
 import React from 'react';
 import Root from './root';
-import Header from '@_c/header';
-import Logo from '@_c/root/Logo';
+import Header from '@/component/root/header';
+import Logo from '@/component/root/logo';
 
 function App() {
   return (

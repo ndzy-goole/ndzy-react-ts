@@ -1,16 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import moment from 'moment';
 import { Typography } from 'antd';
+import { useSetState } from 'ahooks';
 const { Paragraph } = Typography;
 
 const Clock = () => {
-  const [date, setDate] = useState(new Date());
-  const [dateValue, setDateValue] = useState('');
-  const [dateValue1, setDateValue1] = useState('');
+  const [state, setStste] = useSetState<{
+    date: Date;
+    val1: string;
+    val2: string;
+  }>({
+    date: new Date(),
+    val1: '',
+    val2: ''
+  });
 
   useEffect(() => {
     function tick() {
-      setDate(new Date());
+      setStste({ date: new Date() });
+      setStste({
+        val1: moment(state.date).format('YYYY-MM-DD HH:mm:ss'),
+        val2: moment(state.date).format('YYYY-MM-DD-HH-mm-ss')
+      });
     }
     const timerID = setInterval(tick, 1000);
 
@@ -19,17 +30,12 @@ const Clock = () => {
     };
   });
 
-  useEffect(() => {
-    setDateValue(moment(date).format('YYYY-MM-DD HH:mm:ss'));
-    setDateValue1(moment(date).format('YYYY-MM-DD-HH-mm-ss'));
-  }, [date]);
-
   return (
-    <div className="flex justify-between px-20 mr-4">
+    <div className="flex justify-between px-4 mr-4">
       <Paragraph copyable className="mr-8">
-        {dateValue}
+        {state.val1}
       </Paragraph>
-      <Paragraph copyable>{dateValue1}</Paragraph>
+      <Paragraph copyable>{state.val2}</Paragraph>
     </div>
   );
 };

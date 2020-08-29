@@ -1,9 +1,10 @@
 import React from 'react';
-import Clock from '../clock';
-import { clearStore } from '../../utils/clearStore';
-import { goPageG } from '../../utils';
+import Clock from '@_c/clock';
+import { clearStore } from '@_u/clearStore';
+import { goPageG } from '@_u/index';
+import { InitProps } from '@/types';
 
-export default (props: any) => {
+export default (props: InitProps) => {
   return (
     <>
       <Clock></Clock>
