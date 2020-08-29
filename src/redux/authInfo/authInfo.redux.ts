@@ -12,7 +12,7 @@ const authInfoAction = createActions({
     return [];
   }
 });
-console.log(authInfoAction);
+// console.log(authInfoAction);
 export const setAuthInfo = authInfoAction.setAuthInfo;
 export const clearAuthInfoStore = authInfoAction.clearStore;
 

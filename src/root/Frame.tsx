@@ -12,7 +12,7 @@ import Tabs from './Tabs';
 import Breadcrumbs from './Breadcrumbs';
 
 import { RootProps } from './Root';
-import { changecollapsed } from '../redux/collapsed/collapsed.redux';
+import { changeCollapsed } from '../redux/collapsed/collapsed.redux';
 import { setopenkeys } from '../redux/openKeys/openKeys.redux';
 import { ActionFunctionAny } from 'redux-actions';
 import { Action } from 'redux';
@@ -23,19 +23,19 @@ import { getOpenKeys } from '../utils/root';
 interface Props extends RootProps, RouteChildrenProps {
   collapsed: boolean;
   selectedKeys: string[];
-  changecollapsed?: ActionFunctionAny<Action<any>>;
+  changeCollapsed?: ActionFunctionAny<Action<any>>;
   setopenkeys?: ActionFunctionAny<Action<any>>;
   [propsName: string]: any;
 }
 
-export default connect((state) => state, { changecollapsed, setopenkeys })(
+export default connect((state) => state, { changeCollapsed, setopenkeys })(
   (props: Props) => {
     const { collapsed, headerHeight } = props;
     const sidebarWidth = collapsed ? 56 : 220; //侧边栏收缩和展开的宽度
     const [menuScroll, setMenuScroll] = useState<any>();
 
     const handleCollapsedBtn = () => {
-      props.changecollapsed && props.changecollapsed(!props.collapsed);
+      props.changeCollapsed && props.changeCollapsed(!props.collapsed);
       if (props.collapsed) {
         props.setopenkeys &&
           props.setopenkeys(getOpenKeys(props.selectedKeys[0]));

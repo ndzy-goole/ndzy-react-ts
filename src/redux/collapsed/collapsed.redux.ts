@@ -1,21 +1,25 @@
 import { createActions, handleActions } from 'redux-actions';
+import { CHANGE_COLLAPSED, CLEAR_STORE } from '../actionTypes';
 
 const collapsed: boolean = false;
-export const { changecollapsed, clearcollapsed } = createActions({
-  CHANGECOLLAPSED: (collapsed: boolean) => {
+const collapsedAction = createActions({
+  [CHANGE_COLLAPSED]: (collapsed: boolean) => {
     return collapsed;
   },
-  CLEARCOLLAPSED: () => {
+  [CLEAR_STORE]: () => {
     return false;
   }
 });
+// console.log(collapsedAction);
+export const changeCollapsed = collapsedAction.changeCollapsed;
+export const clearCollapsedStore = collapsedAction.clearStore;
 
 const collapsedReducer = handleActions(
   {
-    CHANGECOLLAPSED: (state: boolean, action) => {
+    [CHANGE_COLLAPSED]: (state: boolean, action) => {
       return action.payload;
     },
-    CLEARCOLLAPSED: (state: boolean, action) => {
+    [CLEAR_STORE]: (state: boolean, action) => {
       return action.payload;
     }
   },

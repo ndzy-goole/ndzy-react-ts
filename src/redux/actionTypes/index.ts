@@ -3,7 +3,9 @@ const SET_AUTH_INFO = 'SET_AUTH_INFO';
 // breadcrumb
 const CHANGE_BREADCRUMB = 'CHANGE_BREADCRUMB';
 const RESET_BREADCRUMB = 'SET_AUTH_INFO';
-// 
+//
+const CHANGE_COLLAPSED = 'CHANGE_COLLAPSED';
+//
 const CLEAR_STORE = 'CLEAR_STORE';
 
 export {
@@ -12,5 +14,8 @@ export {
   // breadcrumb
   CHANGE_BREADCRUMB,
   RESET_BREADCRUMB,
+  //
+  CHANGE_COLLAPSED,
+  //
   CLEAR_STORE
 };
