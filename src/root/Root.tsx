@@ -6,10 +6,10 @@ import Frame from './Frame';
 import { historyBrowser, historyHash } from './history';
 import { MyStore } from '../redux';
 import { menuRouter, fullScreenRouter, errRouter } from './router';
-import { authInfoAction } from '../redux/authInfo/authInfo.redux';
+import { setAuthInfo } from '../redux/authInfo/authInfo.redux';
 import {
-  resetbreadcrumb,
-  changebreadcrumb
+  changeBreadcrumb,
+  resetBreadcrumb
 } from '../redux/breadcrumb/breadcrumb.redux';
 import { setselectkeys } from '../redux/selectKeys/selectKeys.redux';
 import { setopenkeys } from '../redux/openKeys/openKeys.redux';
@@ -24,8 +24,6 @@ const history = {
   hash: historyHash
 };
 
-const setAuthInfo = authInfoAction.setAuthInfo;
-
 export interface RootProps {
   logo: (collapsed: boolean) => JSX.Element;
   headerHeight: number;
@@ -36,11 +34,11 @@ export interface RootProps {
   authInfo: any[];
   collapsed: boolean;
   breadcrumb: any[];
-  resetbreadcrumb?: ActionFunctionAny<Action<any>>;
-  changebreadcrumb?: ActionFunctionAny<Action<any>>;
+  setAuthInfo?: ActionFunctionAny<Action<any>>;
+  resetBreadcrumb?: ActionFunctionAny<Action<any>>;
+  changeBreadcrumb?: ActionFunctionAny<Action<any>>;
   setselectkeys?: ActionFunctionAny<Action<any>>;
   setopenkeys?: ActionFunctionAny<Action<any>>;
-  setAuthInfo?: ActionFunctionAny<Action<any>>;
 }
 
 const mapStateToProps = (store: MyStore) => {
@@ -53,20 +51,21 @@ const mapStateToProps = (store: MyStore) => {
 };
 
 const Root = connect(mapStateToProps, {
-  resetbreadcrumb,
+  resetBreadcrumb,
   setAuthInfo,
-  changebreadcrumb,
+  changeBreadcrumb,
   setselectkeys,
   setopenkeys
 })((props: RootProps) => {
-  
   /**
    * @description 设置面包屑
    * @param data
    */
-  const setBreadcrumb = (data: { path?: string; name: string }[] | string) => {
+  const handleSetBreadcrumb = (
+    data: { path?: string; name: string }[] | string
+  ) => {
     if (isArray(data)) {
-      props.resetbreadcrumb && props.resetbreadcrumb(data);
+      props.resetBreadcrumb && props.resetBreadcrumb(data);
       return;
     }
 
@@ -80,8 +79,8 @@ const Root = connect(mapStateToProps, {
     menuRouter.forEach((item) => {
       if (data.split('?')[0] === item.path) {
         if (!pathInfo) {
-          props.changebreadcrumb &&
-            props.changebreadcrumb({ path: data, name: item.title });
+          props.changeBreadcrumb &&
+            props.changeBreadcrumb({ path: data, name: item.title });
         }
         props.setselectkeys && props.setselectkeys([data]);
       } else if (data.includes(item.parent)) {
@@ -118,7 +117,7 @@ const Root = connect(mapStateToProps, {
                         clearStore();
                       }}
                       setBreadcrumb={(data: any) => {
-                        setBreadcrumb(data);
+                        handleSetBreadcrumb(data);
                       }}
                       setAuthInfo={(authInfo: any) => {
                         props.setAuthInfo && props.setAuthInfo(authInfo);
@@ -148,7 +147,7 @@ const Root = connect(mapStateToProps, {
                       clearStore();
                     }}
                     setBreadcrumb={(data: any) => {
-                      setBreadcrumb(data);
+                      handleSetBreadcrumb(data);
                     }}
                     setAuthInfo={(authInfo: any) => {
                       props.setAuthInfo && props.setAuthInfo(authInfo);
@@ -173,7 +172,7 @@ const Root = connect(mapStateToProps, {
                   clearStore();
                 }}
                 setBreadcrumb={(data: any) => {
-                  setBreadcrumb(data);
+                  handleSetBreadcrumb(data);
                 }}
                 setAuthInfo={(authInfo: any) => {
                   props.setAuthInfo && props.setAuthInfo(authInfo);

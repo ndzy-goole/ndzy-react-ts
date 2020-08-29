@@ -11,8 +11,8 @@ const Clock = () => {
     val2: string;
   }>({
     date: new Date(),
-    val1: '',
-    val2: ''
+    val1: moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),
+    val2: moment(new Date()).format('YYYY-MM-DD-HH-mm-ss')
   });
 
   useEffect(() => {

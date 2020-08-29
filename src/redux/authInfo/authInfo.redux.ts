@@ -4,7 +4,7 @@ import { AnyObj } from '@/types';
 
 const authInfo: AnyObj[] = [];
 
-export const authInfoAction = createActions({
+const authInfoAction = createActions({
   [SET_AUTH_INFO]: (authInfo: AnyObj[]) => {
     return authInfo;
   },
@@ -12,10 +12,14 @@ export const authInfoAction = createActions({
     return [];
   }
 });
+console.log(authInfoAction);
+export const setAuthInfo = authInfoAction.setAuthInfo;
+export const clearAuthInfoStore = authInfoAction.clearStore;
+
 const authInfoReducer = handleActions(
   {
     [SET_AUTH_INFO]: (state: AnyObj[], action) => {
-      return [...action.payload];
+      return action.payload.length > 0 ? [...action.payload] : [];
     },
     [CLEAR_STORE]: (state: AnyObj[], action) => {
       return action.payload;

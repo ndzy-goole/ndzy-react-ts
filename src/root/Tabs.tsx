@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { CloseOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons';
 
 import { RouteChildrenProps } from 'react-router-dom';
-import { resetbreadcrumb } from '../redux/breadcrumb/breadcrumb.redux';
+import { resetBreadcrumb } from '../redux/breadcrumb/breadcrumb.redux';
 import { setselectkeys } from '../redux/selectKeys/selectKeys.redux';
 import { setopenkeys } from '../redux/openKeys/openKeys.redux';
 import { ActionFunctionAny } from 'redux-actions';
@@ -21,7 +21,7 @@ interface Props extends RouteChildrenProps {
   breadcrumb: any[];
   selectedKeys: string[];
   collapsed: boolean;
-  resetbreadcrumb?: ActionFunctionAny<Action<any>>;
+  resetBreadcrumb?: ActionFunctionAny<Action<any>>;
   setselectkeys?: ActionFunctionAny<Action<any>>;
   setopenkeys?: ActionFunctionAny<Action<any>>;
 }
@@ -37,7 +37,7 @@ const mapStateToProps = (store: MyStore) => {
 };
 
 export default connect(mapStateToProps, {
-  resetbreadcrumb,
+  resetBreadcrumb,
   setselectkeys,
   setopenkeys
 })((props: Props) => {
@@ -89,7 +89,7 @@ export default connect(mapStateToProps, {
 
       props.history.push(newPath);
     }
-    props.resetbreadcrumb && props.resetbreadcrumb(newBreadcrumb);
+    props.resetBreadcrumb && props.resetBreadcrumb(newBreadcrumb);
   };
 
   const getNodeNum = () => {

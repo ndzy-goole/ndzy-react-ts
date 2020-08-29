@@ -8,7 +8,7 @@ import { RouteChildrenProps } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setopenkeys } from '../redux/openKeys/openKeys.redux';
 import { setselectkeys } from '../redux/selectKeys/selectKeys.redux';
-import { changebreadcrumb } from '../redux/breadcrumb/breadcrumb.redux';
+import { changeBreadcrumb } from '../redux/breadcrumb/breadcrumb.redux';
 
 import { MyStore } from '../redux';
 import { appConfig, menuRouter } from './router';
@@ -25,7 +25,7 @@ interface Props extends RouteChildrenProps {
   authInfo: {}[];
   setopenkeys?: ActionFunctionAny<Action<any>>;
   setselectkeys?: ActionFunctionAny<Action<any>>;
-  changebreadcrumb?: ActionFunctionAny<Action<any>>;
+  changeBreadcrumb?: ActionFunctionAny<Action<any>>;
 }
 
 const mapStateToProps = (store: MyStore) => {
@@ -43,7 +43,7 @@ const mapStateToProps = (store: MyStore) => {
 export default connect(mapStateToProps, {
   setopenkeys,
   setselectkeys,
-  changebreadcrumb
+  changeBreadcrumb
 })((props: Props) => {
   const selectedKeys = props.selectedKeys.map((key) => {
     return key.split('?')[0];
@@ -66,8 +66,8 @@ export default connect(mapStateToProps, {
 
     menuRouter.forEach((item) => {
       if (key.includes(item.path)) {
-        props.changebreadcrumb &&
-          props.changebreadcrumb({ path: key, name: item.title });
+        props.changeBreadcrumb &&
+          props.changeBreadcrumb({ path: key, name: item.title });
       }
     });
   };
