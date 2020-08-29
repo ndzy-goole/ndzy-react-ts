@@ -47,6 +47,7 @@ yarn add nedb
 yarn add @types/nedb -D
 
 # tailwindcss
+
 yarn add tailwindcss postcss-cli autoprefixer -D
 
 #
@@ -64,7 +65,7 @@ yarn add tailwindcss postcss-cli autoprefixer -D
     // setBreadcrumb('/moduleA/page3?a=1&b=2');
   };
 
-// 
+//
 import { RouteChildrenProps } from 'react-router-dom';
 interface Props extends RouteChildrenProps {
   setBreadcrumb: (data: { path?: string; name: string }[] | string) => void;
@@ -75,4 +76,11 @@ interface State {
   [propName: string]: any;
 }
 ```
+
 # 配置文件别名
+
+```
+paths.json
+config-overrides.js
+
+```

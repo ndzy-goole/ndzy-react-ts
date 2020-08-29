@@ -50,7 +50,7 @@ const mapStateToProps = (store: MyStore) => {
   };
 };
 
-export default connect(mapStateToProps, {
+const Root = connect(mapStateToProps, {
   resetbreadcrumb,
   setauthinfo,
   changebreadcrumb,
@@ -190,3 +190,4 @@ export default connect(mapStateToProps, {
     </Router>
   );
 });
+export default Root;

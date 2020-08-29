@@ -5,20 +5,11 @@
       "@/*": [
         "src/*"
       ],
-      "@share/*": [
-        "src/share/*"
+      "@_c/*": [
+        "src/component/*"
       ],
-      "@mocks/*": [
-        "src/mocks/*"
-      ],
-      "@static/*": [
-        "src/static/*"
-      ],
-      "@components/*": [
-        "src/components/*"
-      ],
-      "@containers/*": [
-        "src/containers/*"
+      "@_v/*": [
+        "src/view/*"
       ]
     }
   }
